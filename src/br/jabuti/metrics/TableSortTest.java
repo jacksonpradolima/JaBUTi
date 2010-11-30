@@ -206,7 +206,7 @@ public class TableSortTest extends JFrame {
             //String[] classes = {"br.jabuti.metrics.Metrics"};
             String[] classes = p.getCodeClasses();
             
-            Metrics mt = new Metrics(p, classes);
+            Metrics mt = new Metrics(null,p, classes);
 
             columnNames = new String[Metrics.metrics.length + 1];
             columnNames[0] = new String("Class Name");

@@ -20,6 +20,8 @@ package br.jabuti.probe;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -40,6 +42,7 @@ import org.apache.bcel.util.ClassPath;
 import br.jabuti.graph.CFG;
 import br.jabuti.instrumenter.ASMInstrumenter;
 import br.jabuti.lookup.Program;
+import br.jabuti.newcmdtool.ConfProjectDAO;
 import br.jabuti.project.JabutiProject;
 import br.jabuti.util.ToolConstants;
 
@@ -57,7 +60,10 @@ public class ProberInstrum {
 	static final private String[] ProberClasses = new String[] {
 			"br.jabuti.probe.ProbedNode", "br.jabuti.probe.DefaultProber",
 			"br.jabuti.probe.DefaultProberHook" };
-
+	
+	private ConfProjectDAO confFile;
+	public ArrayList<String> classesList;
+	
 	public static void usage() {
 		System.out.println(ToolConstants.toolName + " v. "
 				+ ToolConstants.toolVersion);
@@ -217,6 +223,58 @@ public class ProberInstrum {
 			usage();
 		}
 	}
+	
+	
+	public ProberInstrum(ConfProjectDAO confFile){
+		this.confFile = confFile;
+	}
+	
+	public ProberInstrum(){
+		
+	}
+	
+	
+	
+	public void startIntrum(){
+		String jarFile = confFile.getJarPathToBeInstrum();
+		String dirFile = confFile.getDirPathToBeInstrum();
+
+		
+		String toAvoid = null;
+		if(confFile.toAvoidInstrum())
+			toAvoid = confFile.getAvoidInstrum();
+				
+		Program program = null;
+		String outName = null;
+		
+		try {
+			if(!jarFile.equals("null"))
+				program = new Program(new ZipFile(jarFile), true,
+						toAvoid);
+			else
+				program = new Program(new File(dirFile), true,  
+						toAvoid);
+			
+			outName = confFile.getCurrentProject()+"/files/classes_instrumented.jar";
+			classesList = program.classesList;
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		String[] classes = program.getClasses();
+		HashSet<String> hs = new HashSet<String>();
+		
+		for (int i = 0; i < classes.length; i++)
+			hs.add(classes[i]);
+	
+
+		ProberInstrum.instrumentProgram(program, hs, CFG.NO_CALL_NODE,
+				outName);
+	}
+	
 
 	public static boolean instrumentProject(JabutiProject project,
 			String baseClass, String outName) {
@@ -277,7 +335,7 @@ public class ProberInstrum {
 
 		// esta com pau aqui.... Precisa ignorar as classes com
 		// ClassFormatException geradas pelo BCEL.
-		// Essas classes devem ser excluidas da instrumentação mas incluidas no
+		// Essas classes devem ser excluidas da instrumentacao mas incluidas no
 		// jar sem serem instrumentadas.
 
 		try {

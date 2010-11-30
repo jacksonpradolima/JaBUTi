@@ -138,6 +138,49 @@ public class JabutiProject {
 			projCoverage[i] = new Coverage();
 		}
 	}
+	
+	
+	/**
+	 * Creates a empty JaBUTi Project
+	 * 
+	 * @param b
+	 *            a {@link String} corresponding to the name of the base class.
+	 * @param cpath
+	 *            a {@link String} corresponding to the classpath to run the
+	 *            base class.
+	 * @throw {@link Exception} in case occurs any problem on identifying the
+	 *        other classes necessary to run the base class.
+	 */
+	public JabutiProject(String cpath) throws Exception {
+		classpath = new String(cpath);
+		junitSrcDir = new String();
+		junitBinDir = new String();
+		junitTestSet = new String();
+		junitJar = new String();
+
+		avoidSet = new HashSet();
+		instrSet = new HashSet();
+
+		// instrClassTable = new HashMap();
+		instrClassTable = new Hashtable();
+
+		progChanged = false;
+		instrChanged = false;
+		execChanged = false;
+		coverageChanged = false;
+		mobility = false;
+
+		cfgOption = CFG.NO_CALL_NODE;
+
+		// Setting the coverage of the project as zero
+		projCoverage = new Coverage[Criterion.NUM_CRITERIA];
+		for (int i = 0; i < Criterion.NUM_CRITERIA; i++) {
+			projCoverage[i] = new Coverage();
+		}
+	}
+	
+	
+	
 
 	/**
 	 * Creates a project from a JaBUTi Project
@@ -212,6 +255,7 @@ public class JabutiProject {
 	}
 
 	public void saveProject() throws Exception {
+		System.out.println("path: "+getProjectFile());
 		if (getProjectFile() == null)
 			return;
 		save(getProjectFile(), true);
