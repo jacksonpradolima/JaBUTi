@@ -25,15 +25,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-/**
- * 
- * @author delamaro
- *
- * Essa classe é uma classe auxiliar para visualizar o conteudo de um
- * arquivo de trace. Passe como argumento o nome do arquivo de trace e
- * ela mostra o seu conteudo, de modo formatado. Chamada da linha
- * de comando
- */
+
 public class ListTrace {
     public static void main(String args[]) throws Throwable {
         TraceReader dtr = null;
@@ -48,7 +40,7 @@ public class ListTrace {
             Hashtable trace = (Hashtable) dtr.getPaths();
             int cont = 0;        	
 
-            while (trace != null && trace.size() > 0 ) {
+            while (trace != null) {
                 System.out.println("**************************************");
                 System.out.println("Path number " + (++cont));
                 System.out.println("**************************************");

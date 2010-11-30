@@ -272,7 +272,7 @@ public class DefaultProbeInsert {
                 if ( stackSize < 6 ) {
                 	mg.setMaxStack(stackSize + 6);
                 }
-                // Remove LVTT do código. Tenta evitar geracao errada do BCEL 5.2
+                // Remove LVTT do código. Tenta evitar geração errada do BCEL 5.2
                 ConstantPoolGen p = mg.getConstantPool();
                 for (Attribute atr : mg.getCodeAttributes()) {
                     int k = atr.getNameIndex();

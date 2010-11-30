@@ -32,7 +32,6 @@ import java.util.Vector;
 import br.jabuti.criteria.AbstractCriterion;
 import br.jabuti.criteria.Criterion;
 import br.jabuti.mobility.HostTraceReader;
-import br.jabuti.probe.ProbedNode;
 import br.jabuti.probe.TraceReader;
 import br.jabuti.util.ToolConstants;
 
@@ -121,7 +120,7 @@ public class TestSet {
 				// dtr = new DefaultTraceReader(traceFile);
 				dtr = new HostTraceReader(traceFile);
 
-				Hashtable<ProbedNode,String[][]> trace = dtr.getPaths();
+				Hashtable trace = (Hashtable) dtr.getPaths();
 
 				int cont = 1;
 
@@ -135,7 +134,7 @@ public class TestSet {
 					tc.addTestCaseFromTRC(prj, trace);
 					newTCs.add(tc);
 
-					trace = dtr.getPaths();
+					trace = (Hashtable) dtr.getPaths();
 					cont++;
 				}
 
@@ -168,7 +167,7 @@ public class TestSet {
 			try {
 				dtr = new HostTraceReader(traceFile);
 
-				Hashtable<ProbedNode,String[][]> trace = dtr.getPaths();
+				Hashtable trace = (Hashtable) dtr.getPaths();
 
 				int cont = 1;
 
