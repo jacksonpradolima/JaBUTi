@@ -19,23 +19,17 @@
 
 package br.jabuti.gui;
 
-import java.awt.BorderLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.util.Arrays;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+import javax.swing.table.*;
 
-import br.jabuti.lookup.Program;
+import br.jabuti.lookup.*;
 import br.jabuti.metrics.Metrics;
-import br.jabuti.util.ToolConstants;
+
+import br.jabuti.util.*;
 
 /**
  * This class is responsable to sort the table according to

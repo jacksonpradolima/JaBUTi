@@ -20,23 +20,12 @@
 package br.jabuti.mobility;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.ListIterator;
+import java.util.*;
+import java.io.*;
 
-import mucode.MuConstants;
-import mucode.MuServer;
-import br.jabuti.mobility.mobile.HostProber;
-import br.jabuti.probe.ProbedNode;
+import br.jabuti.mobility.mobile.*;
+import br.jabuti.probe.*;
+import mucode.*;
 
 
 public class HostProberServer extends MuServer

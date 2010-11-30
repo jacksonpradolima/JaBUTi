@@ -20,21 +20,17 @@
 package br.jabuti.device;
 
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.jar.JarEntry;
-import java.util.jar.JarOutputStream;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.util.ClassPath;
 
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.util.ClassPath;
+import java.io.*;
+import java.util.*;
+import java.util.jar.*;
 
-import br.jabuti.lookup.Program;
+import br.jabuti.lookup.*;
 import br.jabuti.project.JabutiProject;
-import br.jabuti.util.ToolConstants;
+
+import br.jabuti.util.*;
 
 
 /**

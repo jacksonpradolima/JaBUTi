@@ -20,17 +20,15 @@
 package br.jabuti.project;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.SourceFile;
-import org.apache.bcel.util.ClassPath;
+import br.jabuti.lookup.*;
 
-import br.jabuti.lookup.RClassCode;
-import br.jabuti.util.ToolConstants;
+import org.aspectj.apache.bcel.util.*;
+import org.aspectj.apache.bcel.classfile.*;
+
+import br.jabuti.util.*;
+import br.jabuti.project.JabutiProject;
 
 
 /**

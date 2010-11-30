@@ -19,7 +19,7 @@
 
 package br.jabuti.cmdtool;
 
-import br.jabuti.lookup.Program;
+import br.jabuti.lookup.*;
 
 /** 
  * This script lists the complete class closure, considering

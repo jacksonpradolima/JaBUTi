@@ -24,17 +24,14 @@ package br.jabuti.instrumenter;
 // import de.fub.bytecode.generic.*;
 // import de.fub.bytecode.*;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.Vector;
+import java.lang.reflect.*;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
-import org.apache.bcel.util.ClassPath;
+import br.jabuti.util.*;
 
-import br.jabuti.util.Debug;
+import org.aspectj.apache.bcel.util.ClassPath;
 
 
 /** This is the class that implements the functionality of a

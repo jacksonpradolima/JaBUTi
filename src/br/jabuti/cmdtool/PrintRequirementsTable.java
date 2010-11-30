@@ -20,13 +20,10 @@
 package br.jabuti.cmdtool;
 
 
-import java.io.File;
-
-import br.jabuti.criteria.Criterion;
-import br.jabuti.project.ClassFile;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.project.JabutiProject;
-import br.jabuti.util.ToolConstants;
+import java.io.*;
+import br.jabuti.criteria.*;
+import br.jabuti.project.*;
+import br.jabuti.util.*;
 
 
 /**

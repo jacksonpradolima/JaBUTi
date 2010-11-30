@@ -19,15 +19,8 @@
 
 package br.jabuti.criteria;
 
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Vector;
-
-import br.jabuti.graph.Graph;
-import br.jabuti.graph.GraphNode;
+import br.jabuti.graph.*;
+import java.util.*;
 
 /**
  * This class implements the interface Criterion and includes the common methods

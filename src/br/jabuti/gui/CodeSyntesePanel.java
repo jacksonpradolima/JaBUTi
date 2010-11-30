@@ -19,15 +19,10 @@
 
 package br.jabuti.gui;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
+import javax.swing.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import br.jabuti.util.ToolConstants;
+import br.jabuti.util.*;
 
 /**
  * This class is reponsable to shows the panel 

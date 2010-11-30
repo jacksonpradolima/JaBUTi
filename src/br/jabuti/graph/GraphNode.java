@@ -20,11 +20,7 @@
 package br.jabuti.graph;
 
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Vector;
+import java.util.*;
 
 /**
  This is the abstract class that represents a node of a Program

@@ -28,36 +28,16 @@ package br.jabuti.gvf;
  * @version 1.0 AUG 2002
  */
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Vector;
+import java.util.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import br.jabuti.gui.*;
+import br.jabuti.project.*;
+import br.jabuti.util.*;
 
-import br.jabuti.graph.CFG;
-import br.jabuti.graph.CFGCallNode;
-import br.jabuti.graph.CFGExitNode;
-import br.jabuti.graph.GraphNode;
-import br.jabuti.gui.JabutiGUI;
-import br.jabuti.gui.WeightColor;
-import br.jabuti.project.ClassFile;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.util.ToolConstants;
+import br.jabuti.graph.*;
 
 
 public class CFGFrame extends JFrame implements ItemListener {

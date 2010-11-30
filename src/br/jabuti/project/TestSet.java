@@ -19,22 +19,14 @@
 
 package br.jabuti.project;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
+import java.io.*;
 
-import br.jabuti.criteria.AbstractCriterion;
-import br.jabuti.criteria.Criterion;
-import br.jabuti.mobility.HostTraceReader;
-import br.jabuti.probe.ProbedNode;
-import br.jabuti.probe.TraceReader;
-import br.jabuti.util.ToolConstants;
+import br.jabuti.mobility.*;
+import br.jabuti.probe.*;
+import br.jabuti.util.*;
+
+import br.jabuti.criteria.*;
 
 /**
  * This class is responsible do deal with the test set. it reads a trace file
@@ -121,7 +113,7 @@ public class TestSet {
 				// dtr = new DefaultTraceReader(traceFile);
 				dtr = new HostTraceReader(traceFile);
 
-				Hashtable<ProbedNode,String[][]> trace = dtr.getPaths();
+				Hashtable trace = (Hashtable) dtr.getPaths();
 
 				int cont = 1;
 
@@ -135,7 +127,7 @@ public class TestSet {
 					tc.addTestCaseFromTRC(prj, trace);
 					newTCs.add(tc);
 
-					trace = dtr.getPaths();
+					trace = (Hashtable) dtr.getPaths();
 					cont++;
 				}
 
@@ -168,7 +160,7 @@ public class TestSet {
 			try {
 				dtr = new HostTraceReader(traceFile);
 
-				Hashtable<ProbedNode,String[][]> trace = dtr.getPaths();
+				Hashtable trace = (Hashtable) dtr.getPaths();
 
 				int cont = 1;
 

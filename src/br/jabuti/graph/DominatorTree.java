@@ -21,16 +21,9 @@
 package br.jabuti.graph;
 
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Vector;
-
-import org.apache.bcel.classfile.ClassParser;
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.MethodGen;
+import java.util.*;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.generic.*;
 
 
 /**

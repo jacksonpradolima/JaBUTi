@@ -20,20 +20,12 @@
 package br.jabuti.device;
 
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
+import br.jabuti.verifier.*;
+import org.aspectj.apache.bcel.classfile.*;
+import java.util.*;
 
-import org.apache.bcel.classfile.Attribute;
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Unknown;
-
-import br.jabuti.lookup.Program;
+import br.jabuti.lookup.*;
 import br.jabuti.probe.DefaultProbeInsert;
-import br.jabuti.verifier.InvalidInstructionException;
-import br.jabuti.verifier.InvalidStackArgument;
 
  
 /** This class is designed to insert probes on each 

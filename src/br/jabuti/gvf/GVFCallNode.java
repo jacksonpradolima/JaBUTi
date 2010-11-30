@@ -31,15 +31,13 @@ package br.jabuti.gvf;
  * @version 1.0 Aug 2001
  */
 
-import java.awt.BasicStroke;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.*;
+import java.awt.geom.*;
 
-import br.jabuti.graph.GraphNode;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.util.ToolConstants;
+import br.jabuti.project.*;
+import br.jabuti.util.*;
+
+import br.jabuti.graph.*;
 
 
 public class GVFCallNode extends GVFNode {

@@ -21,20 +21,12 @@
 package br.jabuti.mobility;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Vector;
+import java.io.*;
+import java.util.*;
 
-import br.jabuti.mobility.mobile.HostProbedNode;
-import br.jabuti.mobility.mobile.HostProber;
-import br.jabuti.probe.DefaultProber;
-import br.jabuti.probe.DefaultTraceReader;
-import br.jabuti.probe.ProbedNode;
-import br.jabuti.util.Debug;
+import br.jabuti.mobility.mobile.*;
+import br.jabuti.util.*;
+import br.jabuti.probe.*;
 
 
 /** This class reads a file stored by the {@link HostProber} class.
@@ -54,7 +46,7 @@ public class HostTraceReader extends DefaultTraceReader {
         super();
     }
 	
-/*    protected int readPaths() {
+    protected int readPaths() {
         paths = null;
         if (br == null) {
             return 0;
@@ -73,7 +65,7 @@ public class HostTraceReader extends DefaultTraceReader {
         		tcName = br.readLine(); // le nome do caso de teste
 		       	if ( tipo.equals(DefaultTraceReader.class.toString() ) )
 		       	{	
-//        			v = super.readOnePath();
+        			v = super.readOnePath();
         			v[0] = new HostProbedNode("localhost", (ProbedNode) v[0]);
                 }
                 else
@@ -81,7 +73,7 @@ public class HostTraceReader extends DefaultTraceReader {
 		       	{	
         			v = readOnePath();
                 }
-               	if ( v != null) paths.put((ProbedNode) v[0], (String[][])v[1]);
+               	if ( v != null) paths.put(v[0], v[1]);
             } catch (Exception e) { 
               Debug.D("FINAL TRACE: (" + k + ") " + e + ""); 
                 paths = null;
@@ -93,15 +85,14 @@ public class HostTraceReader extends DefaultTraceReader {
 
         while (en.hasMoreElements()) {
             ProbedNode pdn = (ProbedNode) en.nextElement();
-//            ArrayList arl = (ArrayList) paths.get(pdn);
+            ArrayList arl = (ArrayList) paths.get(pdn);
             ArrayList v2 = new ArrayList();
 
-//            getSinglePath(v2, arl); 
-            paths.put(pdn, (String[][])v2.toArray(new String[v2.size()][]));
+            getSinglePath(v2, arl); 
+            paths.put(pdn, v2.toArray(new String[v2.size()][]));
         }
         return paths.size();
     }
-*/	
 	
     protected Object[] readOnePath() throws Exception
     {
@@ -202,10 +193,4 @@ public class HostTraceReader extends DefaultTraceReader {
 		r.add(v.toArray(new String[0]));
 		return r;
 	}
-	
-    protected ProbedNode getNodeFromRegistro(String registro) {
-    	return new HostProbedNode("localhost", super.getNodeFromRegistro(registro));
-    }
-    
-	
 }

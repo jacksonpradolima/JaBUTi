@@ -19,18 +19,12 @@
 
 package br.jabuti.graph;
 
-import java.util.Comparator;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
-import org.apache.bcel.generic.IINC;
-import org.apache.bcel.generic.Instruction;
-
-import br.jabuti.util.Debug;
-import br.jabuti.verifier.InstructionGraph;
-import br.jabuti.verifier.InstructionNode;
+import br.jabuti.util.*;
+import org.aspectj.apache.bcel.generic.IINC;
+import org.aspectj.apache.bcel.generic.Instruction;
+import br.jabuti.verifier.*;
 
 /**
  * This class represents a node of the {@link CFG} graph.

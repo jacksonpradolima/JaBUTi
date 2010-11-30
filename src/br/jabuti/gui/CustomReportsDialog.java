@@ -19,26 +19,13 @@
 
 package br.jabuti.gui;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.io.File;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+import java.io.*;
 import org.w3c.dom.Document;
 
-import br.jabuti.util.HTMLGen;
-import br.jabuti.util.ToolConstants;
-import br.jabuti.util.XMLPrettyPrinter;
+import br.jabuti.util.*;
 
 /**
  * This class is responsible to show information about

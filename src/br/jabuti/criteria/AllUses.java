@@ -20,15 +20,8 @@
 package br.jabuti.criteria;
 
 
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Vector;
-
-import br.jabuti.graph.CFG;
-import br.jabuti.graph.CFGNode;
-import br.jabuti.graph.GraphNode;
-import br.jabuti.graph.RRLiveDefs;
+import br.jabuti.graph.*;
+import java.util.*;
 
 
  
@@ -62,13 +55,13 @@ public class AllUses extends AbstractCriterion {
 
         graph.roundRobinAlgorithm(rral, true);
 		AllNodes secNodes = new AllNodes(graph, SECONDARY);
-				
+		
         for (int i = 0; i < graph.size(); i++) {
         	
         	// Pra cada noh pega o conjunto de variaveis vivas
         	// e o no onde foi definida
             CFGNode g = (CFGNode) graph.elementAt(i);
-            boolean isSec = secNodes.required.keySet().contains(new Node(g.getLabel()));
+            boolean isSec = secNodes.required.containsKey(g.getLabel());
             
             HashSet h1 = (HashSet) g.getUserData(RRLiveDefs.defaultLabel);
 

@@ -43,14 +43,7 @@
  */
 package br.jabuti.gvf;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
+import java.io.*;
 
 import javax.swing.JOptionPane;
 
@@ -72,7 +65,7 @@ import javax.swing.JOptionPane;
  *    gv.addln(gv.end_graph());
  *    System.out.println(gv.getDotSource());
  *
- *    File out = new File("out.png");
+ *    File out = new File("out.gif");
  *    gv.writeGraphToFile(gv.getGraph(gv.getDotSource()), out);
  * </pre>
  * </dd>
@@ -92,7 +85,7 @@ public class GraphViz
    /**
     * Where is your dot program located? It will be called externally.
     */
-   private final static String DOT_W        = "C:\\Program Files\\Graphviz2.20\\bin\\dot.exe";
+   private final static String DOT_W        = "c:\\Arquivos de programas\\ATT\\GraphViz\\bin\\dot.exe";
    private final static String DOT_L        = "/usr/bin/dot";
    private static String DOT = null;
 
@@ -117,9 +110,7 @@ public class GraphViz
 		   else
 		   if ( s != null && s.startsWith("WINDOWS") )
 		   {
-			   DOT = windowsFindDot();
-			   // DOT = DOT_W;
-			   System.out.println(DOT);
+			   DOT = DOT_W;
 		   }
 		   else
 		   {
@@ -144,42 +135,10 @@ public class GraphViz
 	   }
    }
 
-   private String windowsFindDot() {
-	String s = getGraphVizInstallPath();
-	if (s == null)
-		return DOT_W;
-	else
-		return s += File.separator + "bin" + File.separator + "dot.exe";
-}
-   
-   private static final String REGQUERY_UTIL = "reg query ";
-   private static final String REGSTR_TOKEN = "REG_EXPAND_SZ";
-   private static final String COMPUTER_WINDOWS_GRAPHVIZ_FOLDER = REGQUERY_UTIL + "\"HKLM\\SOFTWARE\\AT&T Research Labs\\Graphviz\" /v InstallPath";
-
-
-   public static String getGraphVizInstallPath() {
-		try {
-			Process process = Runtime.getRuntime().exec(
-					COMPUTER_WINDOWS_GRAPHVIZ_FOLDER);
-			StreamReader reader = new StreamReader(process.getInputStream());
-			reader.start();
-			process.waitFor();
-			reader.join();
-			String result = reader.getResult();
-			int p = result.indexOf(REGSTR_TOKEN);
-			if (p == -1)
-				return null;
-			return result.substring(p + REGSTR_TOKEN.length()).trim();
-		} catch (Exception e) {
-			return null;
-		}
-	}   
-
-/**
- * Returns the graph's source description in dot language.
- * 
- * @return Source of the graph in dot language.
- */
+   /**
+    * Returns the graph's source description in dot language.
+    * @return Source of the graph in dot language.
+    */
    public String getDotSource() {
       return graph.toString();
    }
@@ -277,7 +236,7 @@ public class GraphViz
     * It will call the external dot program, and return the image in
     * binary format.
     * @param dot Source of the graph (in dot language).
-    * @return The image of the graph in .png format.
+    * @return The image of the graph in .gif format.
     */
    private byte[] get_img_stream(File dot)
    {
@@ -285,11 +244,11 @@ public class GraphViz
       byte[] img_stream = null;
 
       try {
-         img = File.createTempFile("graph_", ".png", new File(this.TEMP_DIR));
+         img = File.createTempFile("graph_", ".gif", new File(this.TEMP_DIR));
          String temp = img.getAbsolutePath();
 
          Runtime rt = Runtime.getRuntime();
-         String cmd = DOT + " -Tpng "+dot.getAbsolutePath()+" -o"+img.getAbsolutePath();
+         String cmd = DOT + " -Tgif "+dot.getAbsolutePath()+" -o"+img.getAbsolutePath();
          Process p = rt.exec(cmd);
          p.waitFor();
 
@@ -366,27 +325,4 @@ public class GraphViz
    public String end_graph() {
       return "}";
    }
-}
-
-class StreamReader extends Thread {
-	private InputStream is;
-	private StringWriter sw;
-
-	StreamReader(InputStream is) {
-	this.is = is;
-	sw = new StringWriter();
-	}
-
-	public void run() {
-	try {
-	int c;
-	while ((c = is.read()) != -1)
-	sw.write(c);
-	}
-	catch (IOException e) { ; }
-	}
-
-	String getResult() {
-	return sw.toString();
-	}
 }

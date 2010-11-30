@@ -19,17 +19,12 @@
 
 package br.jabuti.cmdtool;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.io.*;
+import java.util.*;
 
 import br.jabuti.criteria.Criterion;
-import br.jabuti.project.ClassFile;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.project.JabutiProject;
-import br.jabuti.project.TestSet;
-import br.jabuti.util.ToolConstants;
+import br.jabuti.util.*;
+import br.jabuti.project.*;
 
 
 /**

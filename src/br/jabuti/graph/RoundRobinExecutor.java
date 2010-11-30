@@ -20,7 +20,7 @@
 package br.jabuti.graph;
 
 
-import java.util.Vector;
+import java.util.*;
 
 
 public interface RoundRobinExecutor {

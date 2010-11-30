@@ -26,20 +26,16 @@ package br.jabuti.util;
  **************************************************/
 
 import java.awt.Color;
-import java.awt.Font;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.text.DecimalFormat;
 import java.util.StringTokenizer;
 
 import javax.swing.JButton;
 
-import br.jabuti.gui.JabutiGUI;
+import br.jabuti.gui.*;
+
+import java.awt.Font;
+import java.io.*;
+import java.net.*;
 
 
 

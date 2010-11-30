@@ -19,86 +19,29 @@
 
 package br.jabuti.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.StringTokenizer;
-import java.util.Vector;
-
-import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import javax.swing.KeyStroke;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 
-import org.apache.bcel.classfile.ClassParser;
-import org.apache.bcel.classfile.JavaClass;
+import org.aspectj.apache.bcel.classfile.ClassParser;
+import org.aspectj.apache.bcel.classfile.JavaClass;
 
-import br.jabuti.criteria.AbstractCriterion;
-import br.jabuti.criteria.Criterion;
-import br.jabuti.criteria.Requirement;
-import br.jabuti.device.ProberServer;
-import br.jabuti.graph.CFG;
-import br.jabuti.gvf.CFGFrame;
+import br.jabuti.graph.*;
+import br.jabuti.gvf.*;
 import br.jabuti.junitexec.Main;
-import br.jabuti.lookup.Program;
+import br.jabuti.lookup.*;
 import br.jabuti.metrics.Metrics;
-import br.jabuti.mobility.HostProberServer;
-import br.jabuti.project.ClassFile;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.project.ClasspathParser;
-import br.jabuti.project.Coverage;
-import br.jabuti.project.JabutiProject;
-import br.jabuti.project.TestCase;
-import br.jabuti.project.TestSet;
-import br.jabuti.util.Debug;
-import br.jabuti.util.HTMLGen;
-import br.jabuti.util.ToolConstants;
-import br.jabuti.util.XMLPrettyPrinter;
+import br.jabuti.mobility.*;
+import br.jabuti.project.*;
+import br.jabuti.util.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.util.*;
+import java.net.*;
+
+import br.jabuti.criteria.*;
+import br.jabuti.device.ProberServer;
 
 /**
  * This is the main class responsible to build the JaBUTi GUI.
@@ -2226,23 +2169,23 @@ public class JabutiGUI extends JFrame {
 	 * Qualipso menu
 	 */
 	private void buildQualipsoMenu() {
-//		qualipsoMenu.setText("QualiPSo");
-//		qualipsoMenu.setMnemonic('Q');
-//		
-//		viewSpago4qFile.setText("Current Spago4Q file");
-//		viewSpago4qFile.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				viewSpago4qFile_actionPerformed(e);
-//			}
-//		});
-//		qualipsoMenu.add(viewSpago4qFile);	
-//		
-//		menuBar.add(qualipsoMenu);
+		qualipsoMenu.setText("QualiPSo");
+		qualipsoMenu.setMnemonic('Q');
+		
+		viewSpago4qFile.setText("Current Spago4Q file");
+		viewSpago4qFile.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				viewSpago4qFile_actionPerformed(e);
+			}
+		});
+		qualipsoMenu.add(viewSpago4qFile);	
+		
+		menuBar.add(qualipsoMenu);
 	}
 
 	void viewSpago4qFile_actionPerformed(ActionEvent ex) {
-		spago4qDialog = new Spago4qXmlDialog();
-		spago4qDialog.generateXML(jbtProject);
+		spago4qDialog = new Spago4qXmlDialog(jbtProject);
+		spago4qDialog.generateXML();
 		spago4qDialog.setVisible(true); // pop up dialog
 	}	
 	

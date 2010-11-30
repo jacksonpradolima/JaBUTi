@@ -21,16 +21,14 @@ package br.jabuti.cmdtool;
 
 
 
-import java.io.File;
-import java.util.StringTokenizer;
-import java.util.Vector;
+import java.io.*;
+import java.util.*;
 
-import br.jabuti.project.ClassFile;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.project.JabutiProject;
-import br.jabuti.project.TestCase;
 import br.jabuti.project.TestSet;
-import br.jabuti.util.ToolConstants;
+
+import br.jabuti.project.*;
+
+import br.jabuti.util.*;
 
 
 /**

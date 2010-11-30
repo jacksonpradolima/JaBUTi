@@ -19,9 +19,9 @@
 
 package br.jabuti.gui;
 
-import java.io.File;
+import java.io.*;
 
-import br.jabuti.util.ToolConstants;
+import br.jabuti.util.*;
 
 /*
  * This class is responsable to create a new thread

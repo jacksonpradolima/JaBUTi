@@ -20,10 +20,7 @@
 package br.jabuti.graph;
 
 
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
 public class RRLiveDefs implements RoundRobinExecutor {
     public final static String defaultLabel = RRLiveDefs.class.getName();

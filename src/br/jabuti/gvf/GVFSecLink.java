@@ -30,12 +30,7 @@ package br.jabuti.gvf;
  * @version 1.0 Aug 2001
  */
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.Stroke;
+import java.awt.*;
 
 
 public class GVFSecLink extends GVFLink {

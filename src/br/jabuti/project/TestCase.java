@@ -19,15 +19,11 @@
 
 package br.jabuti.project;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
+import java.util.*;
 
-import br.jabuti.criteria.AbstractCriterion;
-import br.jabuti.criteria.Criterion;
-import br.jabuti.gui.JabutiGUI;
+import br.jabuti.gui.*;
 import br.jabuti.mobility.mobile.HostProbedNode;
+import br.jabuti.criteria.*;
 
 /**
  *

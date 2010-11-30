@@ -21,20 +21,12 @@ package br.jabuti.cmdtool;
 
 
 
-import java.io.File;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.io.*;
+import java.util.*;
 
-import br.jabuti.criteria.AbstractCriterion;
-import br.jabuti.criteria.Criterion;
-import br.jabuti.criteria.DefUse;
-import br.jabuti.criteria.Edge;
-import br.jabuti.project.ClassFile;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.project.JabutiProject;
-import br.jabuti.project.TestCase;
-import br.jabuti.project.TestSet;
-import br.jabuti.util.ToolConstants;
+import br.jabuti.criteria.*;
+import br.jabuti.project.*;
+import br.jabuti.util.*;
 
 
 /**

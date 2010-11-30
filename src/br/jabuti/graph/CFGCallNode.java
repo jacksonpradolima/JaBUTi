@@ -20,15 +20,9 @@
 package br.jabuti.graph;
 
 
-import java.util.Vector;
-
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.INVOKESPECIAL;
-import org.apache.bcel.generic.INVOKESTATIC;
-import org.apache.bcel.generic.InvokeInstruction;
-import org.apache.bcel.generic.Type;
-
-import br.jabuti.verifier.InstructionNode;
+import java.util.*;
+import org.aspectj.apache.bcel.generic.*;
+import br.jabuti.verifier.*;
 
 
 public class CFGCallNode extends CFGNode {

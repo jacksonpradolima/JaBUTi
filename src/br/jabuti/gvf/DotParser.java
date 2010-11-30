@@ -52,8 +52,8 @@ private int graphHeight = 0;
         int k = pos.indexOf(",");
         String xs = pos.substring(1,k);
         String ys = pos.substring(k+1,pos.length()-1);
-        int x = (int) Double.parseDouble(xs);
-        int y = (int) Double.parseDouble(ys);
+        int x = Integer.parseInt(xs);
+        int y = Integer.parseInt(ys);
         GVFNode node = findLabel(label);
         if ( node != null )
         {
@@ -78,8 +78,8 @@ private int graphHeight = 0;
                 if ( k < 0 ) k = pos.length()-1;
                 String ys = pos.substring(0,k);
                 pos = pos.substring(k, pos.length());
-            int x = (int) Double.parseDouble(xs);
-            int y = (int) Double.parseDouble(ys);
+                int x = Integer.parseInt(xs);
+                int y = Integer.parseInt(ys);
                 k = pos.indexOf(",");
             if ( k >= 0 ) k = 0;
                 link.addPoint(x, graphHeight-y);
@@ -98,18 +98,18 @@ private int graphHeight = 0;
         private String removeFDL(String x)
         {
                 StringBuffer sb = new StringBuffer(x);
-                int k = sb.indexOf("\u005c\u005c",0);
+                int k = sb.indexOf("\\",0);
                 while ( k >= 0 && k < sb.length() - 1)
                 {
-                        if ( sb.charAt(k + 1) == '\u005cn' ||
-                             sb.charAt(k + 1) == '\u005cr' )
+                        if ( sb.charAt(k + 1) == '\n' ||
+                             sb.charAt(k + 1) == '\r' )
                         {
                                 sb.deleteCharAt(k);
                                 sb.deleteCharAt(k);
-                                if ( k < sb.length() && sb.charAt(k) == '\u005cn' )
+                                if ( k < sb.length() && sb.charAt(k) == '\n' )
                                         sb.deleteCharAt(k);
                         }
-                        k = sb.indexOf("\u005c\u005c",k+1);
+                        k = sb.indexOf("\\",k+1);
                 }
                 return sb.toString();
         }
@@ -674,7 +674,7 @@ Token t = null;
       return (jj_ntk = jj_nt.kind);
   }
 
-  private java.util.List<int[]> jj_expentries = new java.util.ArrayList<int[]>();
+  private java.util.List jj_expentries = new java.util.ArrayList();
   private int[] jj_expentry;
   private int jj_kind = -1;
   private int[] jj_lasttokens = new int[100];
@@ -689,7 +689,7 @@ Token t = null;
       for (int i = 0; i < jj_endpos; i++) {
         jj_expentry[i] = jj_lasttokens[i];
       }
-      jj_entries_loop: for (java.util.Iterator<?> it = jj_expentries.iterator(); it.hasNext();) {
+      jj_entries_loop: for (java.util.Iterator it = jj_expentries.iterator(); it.hasNext();) {
         int[] oldentry = (int[])(it.next());
         if (oldentry.length == jj_expentry.length) {
           for (int i = 0; i < jj_expentry.length; i++) {
@@ -737,7 +737,7 @@ Token t = null;
     jj_add_error_token(0, 0);
     int[][] exptokseq = new int[jj_expentries.size()][];
     for (int i = 0; i < jj_expentries.size(); i++) {
-      exptokseq[i] = jj_expentries.get(i);
+      exptokseq[i] = (int[])jj_expentries.get(i);
     }
     return new ParseException(token, exptokseq, tokenImage);
   }

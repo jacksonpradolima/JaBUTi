@@ -20,7 +20,7 @@
 package br.jabuti.graph;
 
 
-import java.util.Collection;
+import java.util.*;
 
 
 public class DominatorTreeNode extends ReduceNode {

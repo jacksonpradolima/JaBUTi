@@ -30,25 +30,15 @@ package br.jabuti.gvf;
  * @version 1.0 Aug 2001
  */
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.Stroke;
-import java.awt.font.FontRenderContext;
-import java.awt.font.LineMetrics;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.*;
+import java.awt.geom.*;
+import java.awt.font.*;
 
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.MethodGen;
+import br.jabuti.project.*;
+import br.jabuti.util.*;
 
-import br.jabuti.graph.GraphNode;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.util.ToolConstants;
+import org.aspectj.apache.bcel.generic.*;
+import br.jabuti.graph.*;
 
 
 public class GVFNode implements GVFDisplayable {

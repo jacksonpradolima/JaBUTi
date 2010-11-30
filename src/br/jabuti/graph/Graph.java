@@ -21,9 +21,8 @@
 package br.jabuti.graph;
 
 
-import java.io.PrintStream;
-import java.util.HashSet;
-import java.util.Vector;
+import java.util.*;
+import java.io.*;
 
 
 /**

@@ -14,3 +14,7 @@ http://www.gnu.org/copyleft/lesser.html
 (a copy of GPL text upon which LGPL relies is also provided).
 
 The directory lib contains third-party libraries distributed along with Jabuti source code for convenience. Their respective licenses are indicated in the file third-party-library-licenses.txt within the referred directory.
+
+
+
+

@@ -25,27 +25,17 @@ package br.jabuti.metrics;
  * @author Cay Horstmann
  */
 
-import java.awt.Container;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.Arrays;
-
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.table.*;
 
 import org.w3c.dom.Document;
 
-import br.jabuti.lookup.Program;
-import br.jabuti.util.HTMLGen;
-import br.jabuti.util.ToolConstants;
-import br.jabuti.util.XMLPrettyPrinter;
+import br.jabuti.lookup.*;
+
+import br.jabuti.util.*;
 
 
 class SortFilterModel extends AbstractTableModel {

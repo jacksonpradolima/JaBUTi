@@ -6,7 +6,7 @@ options {
    DEBUG_PARSER = false;
 }
 
-PARSER_BEGIN(DotParser) 
+PARSER_BEGIN(DotParser)
 package br.jabuti.gvf;
 
 import java.util.*;
@@ -61,8 +61,8 @@ private int graphHeight = 0;
     	int k = pos.indexOf(",");
     	String xs = pos.substring(1,k);
     	String ys = pos.substring(k+1,pos.length()-1);
-        int x = (int) Double.parseDouble(xs);
-        int y = (int) Double.parseDouble(ys);
+    	int x = Integer.parseInt(xs);
+    	int y = Integer.parseInt(ys);
     	GVFNode node = findLabel(label);
     	if ( node != null )
     	{
@@ -87,8 +87,8 @@ private int graphHeight = 0;
 	    	if ( k < 0 ) k = pos.length()-1;
 	    	String ys = pos.substring(0,k);
     		pos = pos.substring(k, pos.length());
-            int x = (int) Double.parseDouble(xs);
-            int y = (int) Double.parseDouble(ys);
+	    	int x = Integer.parseInt(xs);
+	    	int y = Integer.parseInt(ys);
 	    	k = pos.indexOf(",");
             if ( k >= 0 ) k = 0;
 	    	link.addPoint(x, graphHeight-y);

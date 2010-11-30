@@ -20,7 +20,7 @@
 package br.jabuti.verifier;
 
 
-import org.apache.bcel.generic.Type;
+import org.aspectj.apache.bcel.generic.*;
 
 
 /** <p>This class represents one configuration of the local

@@ -19,10 +19,8 @@
 
 package br.jabuti.cmdtool;
 
-import java.io.File;
-
-import br.jabuti.project.JabutiProject;
-import br.jabuti.project.TestSet;
+import java.io.*;
+import br.jabuti.project.*;
 
 /**
  * Esse script e utilizado para importar casos de teste gerados pelo class loader

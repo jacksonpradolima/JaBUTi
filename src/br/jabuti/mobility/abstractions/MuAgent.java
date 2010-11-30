@@ -22,8 +22,8 @@
 package br.jabuti.mobility.abstractions;
 
 
-import mucode.MuServer;
-import br.jabuti.mobility.mobile.HostProber;
+import mucode.*;
+import br.jabuti.mobility.mobile.*;
 
 /** 
 *	This is a re-implementation of <code>mucode.abstractions.MuAgent</code>.

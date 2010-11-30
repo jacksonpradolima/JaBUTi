@@ -20,7 +20,7 @@
 package br.jabuti.lookup;
 
 
-import java.util.Vector;
+import java.util.*;
 
 
 /**

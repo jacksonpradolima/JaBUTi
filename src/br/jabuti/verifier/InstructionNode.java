@@ -20,78 +20,10 @@
 package br.jabuti.verifier;
 
 
-import java.util.BitSet;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Vector;
-
-import org.apache.bcel.generic.ACONST_NULL;
-import org.apache.bcel.generic.ANEWARRAY;
-import org.apache.bcel.generic.ARRAYLENGTH;
-import org.apache.bcel.generic.ATHROW;
-import org.apache.bcel.generic.ArithmeticInstruction;
-import org.apache.bcel.generic.ArrayInstruction;
-import org.apache.bcel.generic.ArrayType;
-import org.apache.bcel.generic.BREAKPOINT;
-import org.apache.bcel.generic.BranchInstruction;
-import org.apache.bcel.generic.CHECKCAST;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.ConstantPushInstruction;
-import org.apache.bcel.generic.ConversionInstruction;
-import org.apache.bcel.generic.DCMPG;
-import org.apache.bcel.generic.DCMPL;
-import org.apache.bcel.generic.DNEG;
-import org.apache.bcel.generic.DUP;
-import org.apache.bcel.generic.DUP2;
-import org.apache.bcel.generic.DUP2_X1;
-import org.apache.bcel.generic.DUP2_X2;
-import org.apache.bcel.generic.DUP_X1;
-import org.apache.bcel.generic.DUP_X2;
-import org.apache.bcel.generic.FCMPG;
-import org.apache.bcel.generic.FCMPL;
-import org.apache.bcel.generic.FNEG;
-import org.apache.bcel.generic.FieldInstruction;
-import org.apache.bcel.generic.GETFIELD;
-import org.apache.bcel.generic.GETSTATIC;
-import org.apache.bcel.generic.IINC;
-import org.apache.bcel.generic.IMPDEP1;
-import org.apache.bcel.generic.IMPDEP2;
-import org.apache.bcel.generic.INEG;
-import org.apache.bcel.generic.INSTANCEOF;
-import org.apache.bcel.generic.INVOKESPECIAL;
-import org.apache.bcel.generic.IndexedInstruction;
-import org.apache.bcel.generic.Instruction;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.InvokeInstruction;
-import org.apache.bcel.generic.JsrInstruction;
-import org.apache.bcel.generic.LCMP;
-import org.apache.bcel.generic.LDC;
-import org.apache.bcel.generic.LDC2_W;
-import org.apache.bcel.generic.LNEG;
-import org.apache.bcel.generic.LoadInstruction;
-import org.apache.bcel.generic.MONITORENTER;
-import org.apache.bcel.generic.MONITOREXIT;
-import org.apache.bcel.generic.MULTIANEWARRAY;
-import org.apache.bcel.generic.NEW;
-import org.apache.bcel.generic.NEWARRAY;
-import org.apache.bcel.generic.NOP;
-import org.apache.bcel.generic.POP;
-import org.apache.bcel.generic.POP2;
-import org.apache.bcel.generic.PUTFIELD;
-import org.apache.bcel.generic.PUTSTATIC;
-import org.apache.bcel.generic.RET;
-import org.apache.bcel.generic.RETURN;
-import org.apache.bcel.generic.ReturnInstruction;
-import org.apache.bcel.generic.SWAP;
-import org.apache.bcel.generic.StackProducer;
-import org.apache.bcel.generic.StoreInstruction;
-import org.apache.bcel.generic.Type;
-import org.apache.bcel.generic.TypedInstruction;
-
-import br.jabuti.graph.GraphNode;
-import br.jabuti.graph.RRReqLocal;
-import br.jabuti.util.Debug;
+import org.aspectj.apache.bcel.generic.*;
+import br.jabuti.util.*;
+import java.util.*;
+import br.jabuti.graph.*;
 
 
 /** This class represents a node of a {@link InstructionGraph} that

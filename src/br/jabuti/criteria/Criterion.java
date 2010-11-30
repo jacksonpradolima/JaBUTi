@@ -20,7 +20,7 @@
 package br.jabuti.criteria;
 
 
-import java.util.HashSet;
+import java.util.*;
 
 
 /** 

@@ -30,9 +30,11 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import br.jabuti.criteria.AbstractCriterion;
@@ -54,10 +56,19 @@ class Spago4qXmlDialog extends JDialog {
 	
 	private JTextPane tp = null; 
 	private JScrollPane scrollPane = null;
+	
+	// Rafael
+	private JTextField resourceNameTF;
+	private JButton gerarBT;
+	private JabutiProject jbtproject;
 
-	public Spago4qXmlDialog() 
+	public Spago4qXmlDialog(JabutiProject jbtproject) 
 	{  
-        super(JabutiGUI.mainWindow(), "Spago4Q XML file.", true);         
+        super(JabutiGUI.mainWindow(), "Spago4Q XML file.", true);
+        
+        // Rafael
+        this.jbtproject = jbtproject;
+        
         Container contentPane = getContentPane();
 
 		tp = new JTextPane();
@@ -67,6 +78,14 @@ class Spago4qXmlDialog extends JDialog {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         
         contentPane.add(scrollPane,BorderLayout.CENTER);
+        
+     // Rafael
+        String projName = jbtproject.getProjectFile().getName();
+        projName = projName.substring(0, projName.length()-4);
+        resourceNameTF = new JTextField(projName, 20);
+        gerarBT = new JButton("Change");
+        
+     
       
         JButton ok = new JButton("Ok");
 
@@ -104,23 +123,39 @@ class Spago4qXmlDialog extends JDialog {
             } 
         }
         );
-      
+              
         JPanel buttonPanel = new JPanel();
-
+        
+     // Rafael
+        buttonPanel.add(new JLabel("Resource: "));
+        buttonPanel.add(resourceNameTF);      
+        buttonPanel.add(gerarBT);
+        gerarBT.addActionListener(new ActionListener(){
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		generateXML();        		
+        	}
+        });
+        
         buttonPanel.add(ok);
         buttonPanel.add(saveFile);
+        
+        
+        
         contentPane.add(buttonPanel, BorderLayout.SOUTH);
         setSize(640, 360);
     }
 	
-	public void generateXML(JabutiProject jbtproject)
+	public void generateXML()
 	{
-        String text = "<GenericItems>\n";
+        String resourceName = resourceNameTF.getText();
+		
+		String text = "<GenericItems>\n";
         for (int i = 0; i < Criterion.NUM_CRITERIA; i++) {
         	Coverage coverage = jbtproject.getProjectCoverage(i);
 
         	text += "  <GenericItem>\n";
-        	text += "    <resource>" + jbtproject.getProjectFileName() + "</resource>\n";
+        	text += "    <resource>" + resourceName + "</resource>\n";
         	text += "    <metric>" + AbstractCriterion.getName(i) + "</metric>\n";
         	text += "    <value>" + coverage.getPercentage() + "</value>\n";
         	text += "  </GenericItem>\n";

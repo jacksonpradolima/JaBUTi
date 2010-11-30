@@ -20,18 +20,16 @@
 package br.jabuti.lookup;
 
 
-import java.io.ByteArrayInputStream;
-import java.util.Vector;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.generic.ConstantPoolGen;
+import org.aspectj.apache.bcel.generic.Instruction;
+import org.aspectj.apache.bcel.generic.InstructionHandle;
+import org.aspectj.apache.bcel.generic.InstructionList;
+import org.aspectj.apache.bcel.generic.InvokeInstruction;
+import org.aspectj.apache.bcel.generic.MethodGen;
 
-import org.apache.bcel.classfile.ClassParser;
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.Instruction;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.InstructionList;
-import org.apache.bcel.generic.InvokeInstruction;
-import org.apache.bcel.generic.MethodGen;
+import java.io.*;
+import java.util.Vector;
 
 import br.jabuti.util.Persistency;
 
@@ -172,7 +170,7 @@ import br.jabuti.util.Persistency;
     		
     		
     		met = jc.getClassName() + "." + mv[i].getName()+ mv[i].getSignature();
-    		System.out.println("Metodo Aplicação = " + met);
+    		System.out.println("Metodo Aplicaï¿½ï¿½o = " + met);
     		System.out.println("Metodo Parametro = " + assinatura);
     		
     		if (met.equals(assinatura))
@@ -205,63 +203,7 @@ import br.jabuti.util.Persistency;
     	return (String[]) v.toArray(new String[0]);
     }
 
-    /** Retorna uma lista de metodos chamados por todos os metodos
-     * desta classe.
-     * @return a lista de metodos chamados pelo metodo passado como argumento.
-     * Se o metodo solicitado nao for encontrado na classe, retorna null.
-     */
-    public String[][] getCalledMethods()
-    {
-    	JavaClass jc = this.getTheClass();
-    	Method[] mv = jc.getMethods();
-    	Method m = null;
-    	String[][] ret = new String[mv.length][];
-    	int i;
-    	ConstantPoolGen cp =
-            new ConstantPoolGen(jc.getConstantPool());
-    	for (i = 0; i < mv.length; i++)
-    	{
-        	Vector v = new Vector();
 
-	    	m = mv[i];
-	    	MethodGen mg =
-	            new MethodGen(m, jc.getClassName(), cp);
-	    	String met = jc.getClassName() + "." + mv[i].getName()+ mv[i].getSignature();
-
-	    	InstructionList il = mg.getInstructionList();
-//	    	System.out.println("Explorando: " + met + " "+ il);
-	    	if ( il == null ) 
-	    	{
-		    	ret[i] = new String[1];
-		    	ret[i][0] = met;
-	    		continue;
-	    	}
-	    	InstructionHandle[] ih = il.getInstructionHandles();
-	    	
-	    	for(int x = 0; x < ih.length; x++)
-	    	{
-	    		Instruction ins = ih[x].getInstruction();
-	    		if ( ins instanceof InvokeInstruction )
-	    		{
-	    			InvokeInstruction invoke = (InvokeInstruction) ins;
-	    			String s =  invoke.getClassName(cp)+ "." + invoke.getMethodName(cp) + invoke.getSignature(cp);
-	    			
-	    			//System.out.println("gettype = " + invoke.getClassType(cp));
-//	    			System.out.println("metodo retornado = " + s);
-	    			if ( ! v.contains(s)) v.add(s);
-	    		}
-	    	}
-	    	ret[i] = new String[v.size()+1];
-	    	ret[i][0] = met;
-	    	for (int j = 0; j < v.size(); j++)
-	    		ret[i][j+1] = (String) v.elementAt(j);
-    	}
-
-	    return ret;
-    }
-
-    
-    
     /**
      Send a few information to the standard output like <BR>
      <UL>

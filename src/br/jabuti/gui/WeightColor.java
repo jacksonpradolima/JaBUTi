@@ -19,28 +19,18 @@
 
 package br.jabuti.gui;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Vector;
-
-import javax.swing.JOptionPane;
-
-import org.apache.bcel.classfile.Method;
+import java.util.*;
+import javax.swing.*;
 
 import br.jabuti.criteria.Criterion;
-import br.jabuti.criteria.DefUse;
 import br.jabuti.criteria.Node;
-import br.jabuti.graph.CFG;
-import br.jabuti.graph.CFGNode;
-import br.jabuti.graph.GraphNode;
-import br.jabuti.project.ClassFile;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.project.JabutiProject;
-import br.jabuti.project.TestSet;
-import br.jabuti.util.ToolConstants;
+import br.jabuti.graph.*;
+import br.jabuti.project.*;
+import br.jabuti.util.*;
+
+import org.aspectj.apache.bcel.classfile.*;
+
+import br.jabuti.criteria.*;
 
 /**
  * This is resonsable to calculate the weights and

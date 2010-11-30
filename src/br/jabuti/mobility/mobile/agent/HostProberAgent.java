@@ -19,14 +19,12 @@
 
 package br.jabuti.mobility.mobile.agent;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Hashtable;
-
-import mucode.MuServer;
-import mucode.abstractions.MuAgent;
+import java.util.*;
+import java.io.*;
+import mucode.abstractions.*;
+import mucode.*;
 import br.jabuti.mobility.HostProberServer;
-import br.jabuti.mobility.mobile.HostProber;
+import br.jabuti.mobility.mobile.*;
 
 public class HostProberAgent extends MuAgent
 {

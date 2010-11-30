@@ -20,12 +20,8 @@
 package br.jabuti.criteria;
 
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Vector;
-
-import br.jabuti.graph.Graph;
-import br.jabuti.graph.GraphNode;
+import br.jabuti.graph.*;
+import java.util.*;
 
 
 /** This class implements the All Edges criterion. 

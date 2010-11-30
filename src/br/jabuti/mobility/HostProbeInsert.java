@@ -20,27 +20,14 @@
 package br.jabuti.mobility;
 
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
+import br.jabuti.verifier.*;
+import br.jabuti.probe.*;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.generic.*;
+import java.util.*;
 
-import org.apache.bcel.classfile.Attribute;
-import org.apache.bcel.classfile.ConstantClass;
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.classfile.Unknown;
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.MethodGen;
-
-import br.jabuti.lookup.Program;
+import br.jabuti.lookup.*;
 import br.jabuti.mobility.abstractions.MuAgent;
-import br.jabuti.probe.DefaultProbeInsert;
-import br.jabuti.verifier.InvalidInstructionException;
-import br.jabuti.verifier.InvalidStackArgument;
 
 
 /** This class is designed to insert probes on each 
@@ -223,7 +210,7 @@ private Collection classList; // list of class to class instrument
 */
     protected JavaClass doMethodInstrument(JavaClass java_class)
     {
-    	/* o trecho abaixo é inserido no inicio do metodo run no
+    	/* o trecho abaixo ï¿½ inserido no inicio do metodo run no
     	 * agente sendo testado ele corresponde a:
     	 if ( hostDestino == null )
     	 {

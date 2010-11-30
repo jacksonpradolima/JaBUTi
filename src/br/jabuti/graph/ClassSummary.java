@@ -20,29 +20,17 @@
 package br.jabuti.graph;
 
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Vector;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.generic.*;
 
-import org.apache.bcel.classfile.ClassParser;
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.MethodGen;
+import java.io.*;
+import java.util.*;
+import java.util.zip.*;
+import java.util.jar.*;
 
-import br.jabuti.util.Debug;
-import br.jabuti.util.ToolConstants;
-import br.jabuti.verifier.InvalidInstructionException;
-import br.jabuti.verifier.InvalidStackArgument;
+import br.jabuti.util.*;
+
+import br.jabuti.verifier.*;
 
 
 /** This is the class that implements the functionality of a
@@ -51,7 +39,7 @@ import br.jabuti.verifier.InvalidStackArgument;
 
  @version: 0.00001
  @author: Auri Marcelo Rizzo Vincenzi
- Márcio Eduardo Delamaro
+ Mï¿½rcio Eduardo Delamaro
 
  */
 
@@ -213,7 +201,7 @@ public class ClassSummary {
     }
  	
     /**
-     Capturar e imprimir as informações sobre definições e usuos de variáveis.
+     Capturar e imprimir as informaï¿½ï¿½es sobre definiï¿½ï¿½es e usuos de variï¿½veis.
      Gerar o CFG por metodo de cada uma das classes.
      */
  	

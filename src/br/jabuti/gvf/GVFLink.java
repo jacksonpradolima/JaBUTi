@@ -30,19 +30,22 @@ package br.jabuti.gvf;
  * @version 1.0 Aug 2001
  */
 
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 import java.awt.Shape;
 import java.awt.Stroke;
-import java.awt.geom.Line2D;
+import java.awt.Graphics;
+import java.awt.geom.*;
 import java.util.Vector;
 
+import com.graphbuilder.curve.BSpline;
 import com.graphbuilder.curve.ControlPath;
 import com.graphbuilder.curve.CubicBSpline;
 import com.graphbuilder.curve.GroupIterator;
+import com.graphbuilder.curve.MultiPath;
+import com.graphbuilder.curve.NaturalCubicSpline;
 import com.graphbuilder.curve.Point;
 import com.graphbuilder.curve.ShapeMultiPath;
 

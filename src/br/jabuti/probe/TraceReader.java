@@ -22,7 +22,7 @@
 package br.jabuti.probe;
 
 
-import java.util.Hashtable;
+import java.util.*;
 
 
 public interface TraceReader {

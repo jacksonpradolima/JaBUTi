@@ -28,42 +28,21 @@ package br.jabuti.gvf;
  * @version 1.0
  */
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
-import java.awt.font.FontRenderContext;
-import java.awt.font.LineMetrics;
-import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.Vector;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.geom.*;
+import javax.swing.*;
 
-import javax.swing.AbstractAction;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
+import br.jabuti.gui.*;
+import br.jabuti.util.*;
 
-import org.apache.bcel.classfile.LineNumberTable;
-import org.apache.bcel.generic.InstructionHandle;
+import java.util.*;
+import java.awt.font.*;
 
-import br.jabuti.graph.CFGNode;
-import br.jabuti.graph.GraphNode;
-import br.jabuti.gui.JabutiGUI;
-import br.jabuti.gui.MyJMenuItem;
-import br.jabuti.gui.SelectedPoint;
-import br.jabuti.gui.WeightColor;
-import br.jabuti.util.ToolConstants;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.generic.*;
+
+import br.jabuti.graph.*;
 
 
 class GVFDrawPanel extends JPanel implements MouseMotionListener {

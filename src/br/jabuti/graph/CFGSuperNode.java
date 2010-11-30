@@ -20,9 +20,8 @@
 package br.jabuti.graph;
 
 
-import org.apache.bcel.generic.ConstantPoolGen;
-
-import br.jabuti.verifier.InstructionNode;
+import br.jabuti.verifier.*;
+import org.aspectj.apache.bcel.generic.*;
 
 
 public class CFGSuperNode extends CFGCallNode {

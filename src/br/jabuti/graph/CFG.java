@@ -20,34 +20,13 @@
 package br.jabuti.graph;
 
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
+import java.io.*;
 
-import org.apache.bcel.classfile.ClassParser;
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.GotoInstruction;
-import org.apache.bcel.generic.Instruction;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.InvokeInstruction;
-import org.apache.bcel.generic.JsrInstruction;
-import org.apache.bcel.generic.MethodGen;
-import org.apache.bcel.generic.RET;
-
-import br.jabuti.util.Debug;
-import br.jabuti.verifier.InstructionGraph;
-import br.jabuti.verifier.InstructionNode;
-import br.jabuti.verifier.InvalidInstructionException;
-import br.jabuti.verifier.InvalidStackArgument;
+import br.jabuti.util.*;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.generic.*;
+import br.jabuti.verifier.*;
 
 
 /**
@@ -250,7 +229,7 @@ public class CFG extends Graph {
             }
               
  O trecho acima foi substituido pela instrucao abaixo. Na construcao
- do InstructionGraph, jah eh calculado se um no é um super ou nao.
+ do InstructionGraph, jah eh calculado se um no ï¿½ um super ou nao.
  */
 
 			boolean isSuperCall = x.isSuper;

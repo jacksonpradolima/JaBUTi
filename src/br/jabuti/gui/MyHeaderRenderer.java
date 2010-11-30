@@ -19,14 +19,9 @@
 
 package br.jabuti.gui;
 
-import java.awt.Component;
-
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.table.*;
 
 
 /**

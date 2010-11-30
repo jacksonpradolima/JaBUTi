@@ -19,15 +19,9 @@
 
 package br.jabuti.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Vector;
-import java.util.zip.ZipException;
+import java.io.*;
+import java.util.zip.*;
+import java.util.*;
 
 public class Persistency
 {

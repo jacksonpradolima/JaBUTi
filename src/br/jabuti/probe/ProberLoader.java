@@ -19,19 +19,17 @@
 
 package br.jabuti.probe;
 
-import java.io.File;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.util.ClassPath;
 
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.util.ClassPath;
+import java.io.*;
+import java.util.*;
 
-import br.jabuti.instrumenter.InstrumentLoader;
-import br.jabuti.lookup.Program;
+import br.jabuti.instrumenter.*;
+import br.jabuti.lookup.*;
 import br.jabuti.project.JabutiProject;
-import br.jabuti.util.ToolConstants;
+
+import br.jabuti.util.*;
 
 /**
  * 

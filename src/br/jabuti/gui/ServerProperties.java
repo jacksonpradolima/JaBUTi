@@ -19,18 +19,10 @@
 
 package br.jabuti.gui;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import javax.swing.*;
+import java.io.*;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-
-import br.jabuti.util.ToolConstants;
+import br.jabuti.util.*;
 
 /**
  * This class is responsible to show information about

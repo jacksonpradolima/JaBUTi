@@ -19,9 +19,9 @@
 
 package br.jabuti.gui;
 
-import java.util.Hashtable;
+import java.util.*;
 
-import br.jabuti.graph.GraphNode;
+import br.jabuti.graph.*;
 
 /**
  * This class store the global about a given point

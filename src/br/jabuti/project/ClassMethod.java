@@ -19,37 +19,18 @@
 
 package br.jabuti.project;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
+import java.util.*;
 
-import org.apache.bcel.classfile.LineNumberTable;
-import org.apache.bcel.classfile.LocalVariableTable;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.LocalVariableGen;
-import org.apache.bcel.generic.MethodGen;
+import br.jabuti.graph.*;
+import br.jabuti.util.*;
+import org.aspectj.apache.bcel.generic.*;
+import org.aspectj.apache.bcel.classfile.*;
 
 import br.jabuti.criteria.AbstractCriterion;
-import br.jabuti.criteria.AllEdges;
-import br.jabuti.criteria.AllNodes;
-import br.jabuti.criteria.AllPotUses;
-import br.jabuti.criteria.AllUses;
 import br.jabuti.criteria.Criterion;
-import br.jabuti.criteria.DefUse;
-import br.jabuti.criteria.Edge;
 import br.jabuti.criteria.Node;
-import br.jabuti.graph.CFG;
-import br.jabuti.graph.CFGNode;
-import br.jabuti.graph.DominatorTree;
-import br.jabuti.graph.DominatorTreeNode;
-import br.jabuti.graph.GraphNode;
-import br.jabuti.graph.RRDominator;
-import br.jabuti.graph.ReduceNode;
-import br.jabuti.util.ToolConstants;
+
+import br.jabuti.criteria.*;
 
 public class ClassMethod {
 
@@ -460,8 +441,8 @@ public class ClassMethod {
 						boolean isRequired = false;
 						GraphNode curNode =
 							((ReduceNode) nodes[z]).getOriginalNode();
-						// Verifica se o nó que pertence ao super-bloco 
-						// faz parte do conjunto de requisitos do critério
+						// Verifica se o nï¿½ que pertence ao super-bloco 
+						// faz parte do conjunto de requisitos do critï¿½rio
 						if (criterion.getRequirementByLabel(curNode.getLabel())
 							!= null) {
 							for (int i = 0; i < required.length; i++) {

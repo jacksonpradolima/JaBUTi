@@ -19,22 +19,16 @@
 
 package br.jabuti.project;
 
-import java.io.BufferedReader;
-import java.io.StringReader;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
+import java.util.*;
+import java.io.*;
 
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.MethodGen;
-
-import br.jabuti.criteria.AbstractCriterion;
 import br.jabuti.criteria.Criterion;
-import br.jabuti.lookup.RClassCode;
+import br.jabuti.lookup.*;
+
+import org.aspectj.apache.bcel.generic.*;
+import org.aspectj.apache.bcel.classfile.*;
+
+import br.jabuti.criteria.*;
 
 /**
  *
@@ -111,7 +105,7 @@ public class ClassFile {
         
         methods = java_class.getMethods();
         
-        System.out.println("********** WORKING WITH " + className + " CLASS **********");
+        //System.out.println("********** WORKING WITH " + className + " CLASS **********");
         
         for (int j = 0; j < methods.length; j++) {
             String methodName = methods[j].getName() + methods[j].getSignature();
@@ -128,6 +122,7 @@ public class ClassFile {
         }
         
         updateClassFileCoverage();
+       
     }
 
     /***********************************************************/

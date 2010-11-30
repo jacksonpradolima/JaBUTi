@@ -34,8 +34,10 @@ java -cp Jabuti-bin.jar br.jabuti.probe.ProberLoader -p <project name> <class to
 
 To instrument and store it instrumented
 
-java -cp Jabuti-bin.jar br.jabuti.probe.ProberInstrum -o <file.jar> -p <project name> <class to execute>
+java -cp Jabuti-bin.zip br.jabuti.probe.ProberInstrum -o <file.jar> -p <project name> <class to execute>
 
 Once instrumented, to execute a test case
 
 java -cp <file.jar> <class to execute> [execution parameters]
+
+

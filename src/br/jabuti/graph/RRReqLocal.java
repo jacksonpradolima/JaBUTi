@@ -20,14 +20,10 @@
 package br.jabuti.graph;
 
 
-import java.util.BitSet;
-import java.util.Vector;
-
-import org.apache.bcel.generic.Instruction;
-import org.apache.bcel.generic.LoadInstruction;
-import org.apache.bcel.generic.StoreInstruction;
+import java.util.*;
 
 import br.jabuti.verifier.InstructionNode;
+import org.aspectj.apache.bcel.generic.*;
 
 
 public class RRReqLocal implements RoundRobinExecutor {

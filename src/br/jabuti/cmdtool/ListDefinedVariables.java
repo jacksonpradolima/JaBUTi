@@ -20,20 +20,15 @@
 package br.jabuti.cmdtool;
 
 
-import java.io.File;
-import java.util.Enumeration;
-import java.util.Hashtable;
+import org.aspectj.apache.bcel.generic.*;
 
-import org.apache.bcel.generic.LocalVariableGen;
+import java.io.*;
+import java.util.*;
 
-import br.jabuti.graph.CFG;
-import br.jabuti.graph.CFGNode;
-import br.jabuti.graph.GraphNode;
-import br.jabuti.lookup.Program;
-import br.jabuti.project.ClassFile;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.project.JabutiProject;
-import br.jabuti.util.ToolConstants;
+import br.jabuti.util.*;
+import br.jabuti.graph.*;
+import br.jabuti.lookup.*;
+import br.jabuti.project.*;
 
 
 /**

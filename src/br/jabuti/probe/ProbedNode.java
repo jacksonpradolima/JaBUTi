@@ -30,7 +30,7 @@ package br.jabuti.probe;
  </UL><BR>
  */
 
-import java.io.Serializable;
+import java.io.*;
 
 
 public class ProbedNode implements Serializable {
@@ -38,6 +38,7 @@ public class ProbedNode implements Serializable {
     /**
 	 * Added to jdk1.5.0_04 compiler
 	 */
+	private static final long serialVersionUID = -5221701009238934021L;
 	public String 	threadCode;  // o Hashcode da thread que executou
     public String 	objectCode;  // o hashcode do objecto que executou
     public String		clazz; 		// the number of the class where the node is

@@ -20,37 +20,15 @@
 package br.jabuti.verifier;
 
 
-import java.io.PrintStream;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Vector;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.generic.*;
 
-import org.apache.bcel.classfile.ClassParser;
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.CodeExceptionGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.InstructionList;
-import org.apache.bcel.generic.JsrInstruction;
-import org.apache.bcel.generic.MethodGen;
-import org.apache.bcel.generic.RET;
-import org.apache.bcel.generic.Type;
-import org.omg.CORBA.DynAnyPackage.Invalid;
-
-import br.jabuti.graph.Graph;
-import br.jabuti.graph.GraphNode;
-import br.jabuti.graph.RRDominator;
-import br.jabuti.graph.RRReqLocal;
-import br.jabuti.graph.RoundRobinExecutor;
-import br.jabuti.util.InstructCtrl;
+import java.util.*;
+import java.util.zip.*;
+import java.util.jar.*;
+import java.io.*;
+import br.jabuti.util.*;
+import br.jabuti.graph.*;
 
 
 /** <p> This class represents a program graph where each node is 
@@ -375,7 +353,7 @@ public class InstructionGraph extends Graph {
                             continue nextException;
                         }
                     }
-                    // procura quem trata da interrupção
+                    // procura quem trata da interrupï¿½ï¿½o
                     for (int k = i - 1; k >= 0; k--) {
                         InstructionNode dftk = (InstructionNode) dft[k];
 

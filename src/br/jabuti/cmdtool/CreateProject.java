@@ -19,18 +19,13 @@
 
 package br.jabuti.cmdtool;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.io.*;
+import java.util.*;
 
-import br.jabuti.graph.CFG;
-import br.jabuti.lookup.Program;
-import br.jabuti.project.JabutiProject;
-import br.jabuti.project.TestSet;
+import br.jabuti.graph.*;
+import br.jabuti.project.*;
+
+import br.jabuti.lookup.*;
 
 
 /** 
@@ -155,7 +150,7 @@ public class CreateProject {
             	
             	try {
             		br = new BufferedReader( new FileReader( instFile ) );
-            		String fname = br.readLine().trim();
+            		String fname = br.readLine();
             		while( fname != null ) {
             			toInstrument.add( fname );
             			fname = br.readLine();

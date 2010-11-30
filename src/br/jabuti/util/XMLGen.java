@@ -19,31 +19,19 @@
 
 package br.jabuti.util;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
 import javax.swing.JOptionPane;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.*;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import br.jabuti.criteria.AbstractCriterion;
-import br.jabuti.criteria.AllPotUses;
-import br.jabuti.criteria.AllUses;
-import br.jabuti.criteria.Criterion;
-import br.jabuti.criteria.Requirement;
 import br.jabuti.lookup.Program;
 import br.jabuti.lookup.RClassCode;
-import br.jabuti.project.ClassFile;
-import br.jabuti.project.ClassMethod;
-import br.jabuti.project.ClassSourceFile;
-import br.jabuti.project.JabutiProject;
-import br.jabuti.project.TestCase;
-import br.jabuti.project.TestSet;
+
+import org.w3c.dom.*;
+import org.w3c.dom.Document;
+
+import br.jabuti.criteria.*;
+import br.jabuti.project.*;
 
 public class XMLGen {
 	private static Document xmlDoc;

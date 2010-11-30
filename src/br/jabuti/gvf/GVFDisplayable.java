@@ -29,8 +29,7 @@ package br.jabuti.gvf;
  * @version 1.0
  */
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
 
 
 public interface GVFDisplayable {

@@ -20,23 +20,17 @@
 package br.jabuti.mobility;
 
 
-import java.io.File;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.generic.*;
 
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.InstructionList;
-import org.apache.bcel.generic.MethodGen;
+import java.io.*;
+import java.util.*;
 
-import br.jabuti.instrumenter.ASMInstrumenter;
-import br.jabuti.lookup.Program;
+import br.jabuti.instrumenter.*;
+import br.jabuti.lookup.*;
 import br.jabuti.project.JabutiProject;
-import br.jabuti.util.ToolConstants;
+
+import br.jabuti.util.*;
 
 
 /**

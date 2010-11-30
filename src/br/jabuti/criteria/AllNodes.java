@@ -20,19 +20,10 @@
 package br.jabuti.criteria;
 
 
-import java.util.HashSet;
-import java.util.Iterator;
-
-import org.apache.bcel.classfile.ClassParser;
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.MethodGen;
-
-import br.jabuti.graph.CFG;
-import br.jabuti.graph.Graph;
-import br.jabuti.graph.GraphNode;
+import br.jabuti.graph.*;
+import java.util.*;
+import org.aspectj.apache.bcel.generic.*;
+import org.aspectj.apache.bcel.classfile.*;
 
 /** 
  * Implementation of the all-nodes criterion.

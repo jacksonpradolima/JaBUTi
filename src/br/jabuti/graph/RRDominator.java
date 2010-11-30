@@ -20,8 +20,7 @@
 package br.jabuti.graph;
 
 
-import java.util.HashSet;
-import java.util.Vector;
+import java.util.*;
 
 public class RRDominator implements RoundRobinExecutor {
     public final static String defaultLabel = RRDominator.class.getName();

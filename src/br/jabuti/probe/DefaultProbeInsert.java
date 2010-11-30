@@ -21,10 +21,9 @@ package br.jabuti.probe;
 
 
 import br.jabuti.graph.*;
-import br.jabuti.util.*;
 import br.jabuti.verifier.*;
-import org.apache.bcel.classfile.*;
-import org.apache.bcel.generic.*;
+import org.aspectj.apache.bcel.classfile.*;
+import org.aspectj.apache.bcel.generic.*;
 import java.util.*;
 
 import br.jabuti.instrumenter.*;
@@ -100,14 +99,10 @@ public class DefaultProbeInsert {
             {
             	// chama a rotina que faz a instrumentacao
 		        
-                try {
-					jv = doDefaultInstrument(jv, userClass[i], typeOfCFG);
-	        		hs.put(r.getName(), jv);
-				} 
-                catch (Exception e) { //Se der exceção, coloca bytecode nao instrumentado em hs
-                    hs.put(userClass[i], jv);
-				}                
+                jv = doDefaultInstrument(jv, userClass[i], typeOfCFG);
+                
                 inst.remove(userClass[i]);
+        		hs.put(r.getName(), jv);
             } else { // coloca o codigo sem instrumentar
                 hs.put(userClass[i], jv);
             }
@@ -118,24 +113,24 @@ public class DefaultProbeInsert {
     private JavaClass doDefaultInstrument(JavaClass java_class, 
     									  String className,
     									  int typeOfCFG)
-            throws Exception {
+            throws InvalidInstructionException,
+            InvalidStackArgument {
 
         ClassGen cg = new ClassGen(java_class);				 
         ConstantPoolGen cp = cg.getConstantPool();
   		
         Method[] methods = cg.getMethods();
 
-//		System.out.println( "Instrumenting class: " + className + 
-//		                    " cfg option: " + typeOfCFG );
+		//System.out.println( "Instrumenting class: " + className + 
+		//                    " cfg option: " + typeOfCFG );
 
         for (int i = 0; i < methods.length; i++) {
             try {
-//				System.out.println( "\tCurrent method: " + methods[i].getGenericSignature() + " - "
-//						+ methods[i].getSignature());                        
                 MethodGen mg = new MethodGen(methods[i], 
                         cg.getClassName(),
                         cp);
 			
+				//System.out.println( "\tCurrent method: " + mg.getName() );                        
                         
                 // does not instrument static initializations or abstract methods
                 if ( (methods[i].getName().equals("<clinit>")) || 
@@ -267,29 +262,9 @@ public class DefaultProbeInsert {
                         }
                     }
                 }
-                int stackSize = mg.getMaxStack();
-                // Tentativa de contornar os erros do BCEL que não altera corretamente o tamanho da pilha
-                if ( stackSize < 6 ) {
-                	mg.setMaxStack(stackSize + 6);
-                }
-                // Remove LVTT do código. Tenta evitar geracao errada do BCEL 5.2
-                ConstantPoolGen p = mg.getConstantPool();
-                for (Attribute atr : mg.getCodeAttributes()) {
-                    int k = atr.getNameIndex();
-                    Constant c = p.getConstant(k);
-                    String s = ((ConstantUtf8) c).getBytes();
-
-                	if ( s.equals ("LocalVariableTypeTable") ) 
-                	{
-                      mg.removeCodeAttribute(atr);
-                    }
-                }
-
                 methods[i] = mg.getMethod();
-            } catch (Exception e) { 
-            	System.out.println(className);
-                System.err.println("\tParser error " + e.getMessage());
-                throw e;
+            } catch (ParseException e) { 
+                System.err.println("Parser error " + e.getMessage());
             }
         }
         int newIndex = cp.addUtf8(JABUTI_DEFAULT_INSTR_ATTRIBUTE);
@@ -399,7 +374,8 @@ public class DefaultProbeInsert {
 				nx = curr.getNext();
 			} while ( curr != last );
 			
-			// and finally, includes the exception handler for the entire original source code
+			// e finalmente, coloca o tratador de exceï¿½ï¿½es para todo
+			// o cï¿½digo orignal
 	        iList = mg.getInstructionList();
 	        mg.addExceptionHandler(preambulo, last, catcher, (ObjectType) null);
         } 

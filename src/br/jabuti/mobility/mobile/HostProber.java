@@ -20,15 +20,13 @@
 package br.jabuti.mobility.mobile;
 
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Hashtable;
+import java.util.*;
+import java.net.*;
 
-import mucode.MuServer;
-import br.jabuti.mobility.mobile.agent.HostProberAgent;
-import br.jabuti.probe.ProbedNode;
+import br.jabuti.probe.*;
+
+import mucode.*;
+import br.jabuti.mobility.mobile.agent.*;
 
 
 /** <p>This class implements a class to create 

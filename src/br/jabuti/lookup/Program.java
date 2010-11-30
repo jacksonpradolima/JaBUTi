@@ -20,25 +20,13 @@
 package br.jabuti.lookup;
 
 
-import java.io.ByteArrayInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Vector;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import java.util.*;
+import br.jabuti.util.*;
+import java.util.zip.*;
+import java.util.jar.*;
+import java.io.*;
 
-import org.apache.bcel.classfile.ClassParser;
-import org.apache.bcel.classfile.JavaClass;
-
-import br.jabuti.util.Debug;
+import org.aspectj.apache.bcel.classfile.*;
 
 
 /**
@@ -48,7 +36,7 @@ import br.jabuti.util.Debug;
  * </p>
  *  
  * <p>
- * On the other hand, it is considered that other classes like the Java
+ * On the othar hand, it is considered that other classes like the Java
  * API or other libraries are not of direct interest to this abstraction.
  * So they are represented in the "borders" of the program if one of
  * the classes in the program has something to do with them. For example
@@ -96,7 +84,7 @@ public class Program implements Serializable {
      *         <LI> javax.lang
      *         <LI> org.omg
      *     </UL> <BR>
-     *     In addition, any referenced class for which the code (a .class) file
+     *     In addition, any referenced class for wich the code (a .class) file
      *     can not be found is considered out of the main structure.
      *      
      *     @param toAvoid This is a string that indicates other classes that should be
@@ -210,10 +198,6 @@ public class Program implements Serializable {
             javaClass = new ClassParser(zippedFile.getInputStream(zippedEntry), className).parse();	// May throw IOException
             className =
                     cc.toPoint(className.substring(0, className.length() - 6));
-            
-            if (cc.doMatch(className, noSys, toAvoid))
-            	continue;
-
             RClass mc = new RClassCode(javaClass, className);
 
             classes.put(className, mc);
@@ -268,7 +252,7 @@ public class Program implements Serializable {
         }
         
         // elimina aquelas classes que nao pertencem ao escopo
-        // e que não possuem sub-classe ou implementação
+        // e que nï¿½o possuem sub-classe ou implementaï¿½ï¿½o
 		en = classes.elements();
         while (en.hasMoreElements())
         {
@@ -278,7 +262,7 @@ public class Program implements Serializable {
 				continue;
 			}		// this class is not of interest
 			if ( dc.implementations.size() == dc.subclasses.size())
-			{ // se são iguais, ambos são 0
+			{ // se sï¿½o iguais, ambos sï¿½o 0
 				classes.remove(dc.name);
 			}
         }
@@ -646,28 +630,7 @@ public class Program implements Serializable {
                 p = new Program(zippedFile, true, null);
             }
         }
-        // p.print();
-        String[] classes = p.getCodeClasses();
-        for (int i = 0; i < classes.length; i++)
-        {
-        	String rcc = p.getCodeClass(i);
-        	RClassCode rc = (RClassCode) p.get(rcc);
-        	try {
-        	String[][] m = rc.getCalledMethods();
-        	for (int j = 0; j < m.length; j++)
-        	{
-        		System.out.println(m[j][0]);
-        		for (int k = 1; k < m[j].length; k++)
-        		{
-            		System.out.println("\t\t" + m[j][k]);
-        		}
-        	}
-        	} catch(Exception e) {
-        		System.err.println("IGNORING CLASS DUE EXCEPTION: " + rc.getName());
-        		e.printStackTrace();
-        		//Silent ignoring exceptions
-        	}
-        }
+        p.print();
     }
 
 }
