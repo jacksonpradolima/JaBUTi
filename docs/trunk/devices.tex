@@ -1,0 +1,296 @@
+% This is part of the Jabuti 1.0 Manual.
+% Copyright 2003 (c) Auri Marcelo Rizzo Vicenzi, Marcio Eduardo Delamaro,
+% Jose Carlos Maldonado.
+% See the file FDL.TXT for copying conditions.
+
+\section{\toolname em dispositivos móveis}
+A ferramenta \toolname foi adaptada para ser utilizada
+no teste de programas Java que rodam em dispositivos
+móveis como PDAs ou telefones celulares. Mais precisamente,
+que estão de acordo com o perfil MIDP (Mobile Information
+Device Profile).
+
+Essa seção descreve as diferenças na utilização da ferramenta para
+o teste desse tipo de software. As mudanças de procedimento dizem
+respeito, principalmente, à instrumentação e execução dos casos de
+teste. Como os programas instrumentados devem executar em
+dispositivos móveis,\footnote{Quando nos referimos a dispositivos móveis
+incluímos os simuladores que, apesar de executarem no desktop, estão
+sujeitos aos mesmos tipos de limitações do perfil MIDP.} o tipo de
+instrumentação deve ser adequada àquele ambiente. Além disso, os
+dados de execução (trace) devem ser analisados pela \toolname, no
+desktop.
+
+Assim, a primeira mudança a ser feita é a instalação de um
+servidor que vai ser responsável pela aquisição dos dados de
+execução dos programas e a geração do arquivo de trace que é
+tratado pela \toolname. O servidor pode ser instalado através de
+um programa chamado diretamente na linha de comando ou de dentro
+da própria ferramenta.
+
+Na chamada direta, o programa deve receber dois argumentos, como
+mostra a descrição abaixo:
+\begin{verbatim}
+> java -cp <classpath Jabuti> br.jabuti.device.ProberServer <port> <filename>
+\end{verbatim}
+
+O primeiro argumento indica o número da porta à qual o servidor
+vai se anexar. O segundo é o nome de um arquivo de configuração
+que descreve quais são os programas que devem ser tratados pelo
+servidor. Um servidor pode tratar de mais de um programa em
+execução ao mesmo tempo. O formato do arquivo de configuração é
+bastante simples. Ele possui, para cada programa a ser tratado,
+duas linhas, contendo a identificação do programa e o nome do
+arquivo de trace onde os dados de execução devem ser gravados.
+Por exemplo:
+
+\begin{verbatim}
+PropExample
+/home/user/Demos/PropExample.trc
+Foo
+/home/foo/foo.trc
+\end{verbatim}
+
+No arquivo de configuração acima, dois programas poderão ser
+tratados pelo servidor. Um batizado de ```PropExample'' e outro
+batizado de ``Foo''. Quando o servidor recebe dados de execução do
+primeiro, esses dados serão gravados no arquivo
+``/home/user/Demos/PropExample.trc'' e do segundo, no arquivo
+``/home/foo/foo.trc''. Note que o nome do programa não está
+relacionado com a sessão de teste criada para o teste. Esse nome é
+atribuído pelo testador no momento da instrumentação, como será
+descrito adiante.
+
+Um exemplo de utilização do comando que instala o servidor seria:
+
+\begin{verbatim}
+java -cp Jabuti-bin.zip br.jabuti.device.ProberServer 1988 config.txt
+\end{verbatim}
+
+A instalação através da ferramenta \toolname é feita através da
+opção ``Properties/Test Server''. Com essa operação abre-se a
+janela mostrada na Figura~\ref{fig:testserver}. Nela o testador
+deve selecionar a porta em que o servidor será instalado e o
+arquivo de configuração. Pode, também, editar esse arquivo e
+salvá-lo, se necessário. O testador deve, ainda, selecionar a opção
+``Mobile device'', que indica o tipo de servidor desejado.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.50\textwidth]{fig/testserver.eps}
+\caption{\label{fig:testserver}Instalação do servidor para dispositivos
+móveis.}
+\end{center}
+\end{figure}
+
+Outra diferença na execução da sessão de teste para dispositivos
+móveis está na instrumentação e do programa em teste e na execução
+dos casos de teste. O programa é instrumentado e gera-se um
+arquivo .jar contendo todas as classes que compõem o programa,
+instrumentando-se aquelas que foram escolhidas na criação do
+projeto de teste. O comando que realiza a instrumentação é o
+seguinte:
+
+\begin{verbatim}
+java -cp <classpath Jabuti> br.jabuti.device.ProberInstrum <opções> <classe base>
+\end{verbatim}
+
+A classe base refere-se ao nome da classe do MIDlet que se deseja
+testar. Deve-se notar que num único ``pacote'' é possível
+colocar-se diversos MIDlets distintos. Porém, somente um pode ser
+instrumentado de cada vez. As opções de instrumentação são as
+seguintes:
+
+\begin{description}
+\item [<-d diretório>:] indica o diretório no qual se encontra o
+arquivo de projeto. É opcional e, se não for fornecido, assume-se
+o diretório corrente;
+\item[<-p projeto>:] nome do arquivo de projeto, criado pela
+\toolname, que corresponde à sessão de teste. Argumento
+obrigatório;
+\item[<-o arquivo>:] dá o nome do arquivo .jar onde serão
+gravadas as classes instrumentadas do programa. Como as classes
+instrumentadas fazem chamadas a métodos localizados em classes da
+\toolname, essas classes são, também, adicionadas ao arquivo de
+saída;
+\item [<-name midlet id>:] é o nome que será dado ao programa em
+teste. É esse nome que identifica o MIDlet para o servidor de
+teste, como visto anteriormente;
+\item [<-h end. servidor>:] esse parâmetro fornece o endereço
+onde o servidor de teste foi instalado, no formato
+``128.123.82.71:1988'' ou ``myserver.com.br:1988''. É um parâmetro
+opcional. Caso não seja fornecido, os dados não serão enviados a
+nenhum servidor. Não utilizar essa opção torna a execução do
+programa inútil em termos de teste, propriamente dito, mas pode
+ser útil para a depuração da ferramenta. Os dados de teste podem
+ser exibidos na saída padrão ou num arquivo, como será visto a
+seguir;
+\item [<-temp arquivo>:] utiliza o arquivo especificado como
+depósito temporário dos dados de trace, no dispositivo. Isso
+permite que, em dispositivos que possuem sistema de arquivos, os
+dados fiquem armazenados ali, salvando espaço na memória
+principal. O nome ``\_\_STDOUT\_\_'' indica que os dados devem ser
+escritos na saída padrão do didpositivo móvel. Isso só faz sentido se a
+execução for feita num simulador no desktop, poi, em geral os
+dispositivos móveis não apresentam resultados na saída padrão;
+\item [<-mem valor>:] especifica um threshold de memória
+disponível que deve ser respeitado para armazenamento dos dados de
+trace. Quando a quantidade de memória cai abaixo desse valor os
+dados são enviados para o servidor de teste, ou armazenados no
+arquivo temporário. O valor pode ser dado em bytes (por exemplo,
+1024), em kbytes ou em mbytes (por exemplo, 128K ou 3M). É um
+parâmetro opcional e, se não fornecido, assume o valor zero,
+indicando que não existe threshold e os dados são sempre
+armazenados, até que a execução termine;
+\item [<-nokeepalive>:] se utilizado, esse parâmetro indica que a
+conexão (TCP) entre o dispositivo e o servidor de teste não deve
+ser mantida durante toda a execução do programa. Assim, cada vez
+que dados devem ser transmitidos, uma nova conexão é criada. Isso
+pode representar economia nos dispositivos em que a utilização de
+rede é cara e paga em função do tempo de utilização. A utilização
+da opção ``<-temp arquivo>'' já determina que a conexão não
+será mantida viva pois todos os dados de execução são gravados no
+arquivo temporário e somente no final da execução do MIDlet os
+dados são enviados ao servidor.
+\end{description}
+
+Seguem-se alguns exemplos da utilização do instrumentador, com
+alguma combinações de parâmetros. \\
+
+\hrule
+\begin{verbatim}
+java -cp Jabuti-bin.zip br.jabuti.device.ProberInstrum -name PropExample
+-p Propexample.jbt -o PropExample.jar -h 200.188.151.130:2000 example.PropExample
+\end{verbatim}
+
+Nesse exemplo, o programa, cuja sessão de teste está descrita no
+projeto chamado ``PropExample'', recebeu o nome de
+``PropExample'', que também é o nome dado ao arquivo .jar de
+saída. Os dados de trace serão enviados ao endereço
+``200.188.151.130:2000'' e a classe do MIDlet é
+``example.PropExample''. Como não foi estabelecido um threshold
+de memória, todos os dados serão armazenados e somente enviados no
+final da execução do programa. Mesmo assim, a conexão entre o
+dispositivo e o servidor de teste é aberta no início da execução
+do MIDlet e permanece aberta até o final do envio dos dados. \\
+
+\hrule
+\begin{verbatim}
+java -cp Jabuti-bin.zip br.jabuti.device.ProberInstrum -name PropExample
+-p Propexample.jbt -o PropExample.jar -h 200.188.151.130:2000 -nokeepalive
+example.PropExample
+\end{verbatim}
+
+O mesmo do exemplo anterior, porém a conexão não permanece aberta
+o tempo todo. Ela só é criada no início da execução, para que seja verificada
+se realmente pode ser criada e depois, no final, quando os dados
+forem enviados. \\
+
+\hrule
+\begin{verbatim}
+java -cp Jabuti-bin.zip br.jabuti.device.ProberInstrum -name PropExample
+-p Propexample.jbt -o PropExample.jar -h 200.188.151.130:2000 -nokeepalive
+-mem 512M example.PropExample
+\end{verbatim}
+
+Nesse caso, os dados são enviados periodicamente, quando a
+quantidade de memória disponível estiver abaixo do valor
+estabelecido, ou seja 512 mega-bytes. Como é improvável que algum
+dispositivo tenha uma memória livre desse tamanho, o que deve
+ocorrer é que a cada dado de trace coletado, este seja
+imediatamente enviado para o servidor. Como a opção
+``-nokeepalive'' foi utilizada, isso significa que a cada dado
+coletado, uma nova conexão é criada, o que pode interferir
+sobremaneira na execução do MIDlet. \\
+
+\hrule
+\begin{verbatim}
+java -cp Jabuti-bin.zip br.jabuti.device.ProberInstrum -name PropExample
+-p Propexample.jbt -o PropExample.jar -h 200.188.151.130:2000 -nokeepalive
+-temp /root1/temp.txt example.PropExample
+\end{verbatim}
+
+Com a utilização do arquivo temporário, os dados de trace são
+sempre enviados para esse arquivo e somente no final enviados para
+o servidor. Assim não são criadas, constantemente, conexões.\\
+
+\hrule
+\begin{verbatim}
+java -cp Jabuti-bin.zip br.jabuti.device.ProberInstrum -name PropExample
+-p Propexample.jbt -o PropExample.jar -temp __STDOUT__ example.PropExample
+\end{verbatim}
+
+Os dados de teste coletados são apresentados na saída padrão do
+dispositivo. Como não foi fornecido o threshold de memória esse
+resultado só é apresentado no final da execução. \\
+
+\hrule
+\ \\
+
+Depois de instrumentadas as classes, é necessário ainda mais um
+passo para que o programa possa ser executado. É a pré-verificação
+do bytecode e o empacotamento num único arquivo. Isso é feito com
+o comando descrito a seguir:
+
+\begin{verbatim}
+> java -cp <classpath Jabuti> br.jabuti.device.Preverify <opções>
+\end{verbatim}
+
+Os argumentos fornecidos para a execução são os seguintes:
+
+\begin{description}
+\item [<-source arquivo>:] esse argumento é obrigatório e indica
+qual é o arquivo .jar onde estão as classes originais do programa
+a ser carregado no dispositivo móvel. Note-se que, como comentado
+anteriormente, esse arquivo pode conter diversos MIDlets, além
+daquele sendo testado;
+\item [<-instr arquivo">:] é o nome do arquivo .jar que foi criado
+no passo anterior, a instrumentação. O que o programa irá fazer é
+substituir no arquivo original, as classes que foram
+instrumentadas, mantendo as demais como estão;
+\item[<-o arquivo>:] indica o nome do arquivo .jar de saída. É um
+argumento opcional e, caso não seja fornecido, assume-se o mesmo
+nome do arquivo original. Nesse caso, o arquivo original é
+sobrescrito;
+\item [<-jad arquivo>:] especifica o nome do arquivo .jad
+a ser gerado, com as informações sobre o ``pacote'' gerado. É
+opcional e, se não for fornecido, nada é gerado;
+\item [<-WTK diretório>:] a \toolname não realiza a pré-verificação
+por si só. Ela utiliza o toolkit de desenvolvimeto wireless da SUN
+para efetuar tal tarefa. Por isso, o testador deve indicar qual é
+o diretório onde encontra-se o WTK.
+\end{description}
+
+Um exemplo de sua utilização seria:
+
+\begin{verbatim}
+java -cp Jabuti-bin.zip br.jabuti.device.Preverify -source Demos.jar
+-instr PropExample.jar -o Demos.jar -jad Demos.jad -WTK /home/user/WTK22
+\end{verbatim}
+
+Concluído esse passo, o programa está pronto para ser executado
+num simulador ou dispositivo móvel. Os dados, dependendo do tipo
+de instrumentação, pode ser enviado ao servidor selecionado ou
+simplesmente escrito num arquivo temporário. Deve-se notar que na
+maioria dos dispositivos, o usuário deve fornecer autorização para
+algumas operações privilegiadas como a criação de uma conexão de
+rede ou leitura/escrita de arquivos. Por isso, a instrumentação
+pode alterar o comportamento do
+MIDlet, fazendo com que o programa seja interrompido e tal
+autorização solicitada. Isso porém, não deve representar problema
+pois, após a exibição de uma janela de solicitação de autorização,
+como a da Figura~\ref{fig:autoriza}, o programa segue normalmente.
+
+Para se executar o programa utilizando o simulador do WTK pode-se
+utilizar o comando:
+
+\begin{verbatim}
+/home/user/WTK22/bin/emulator.exe -Xdescriptor:Demos.jad
+\end{verbatim}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.30\textwidth]{fig/autoriza.eps}
+\caption{\label{fig:autoriza}Execução no emulador: autorização para criar conexão.}
+\end{center}
+\end{figure}

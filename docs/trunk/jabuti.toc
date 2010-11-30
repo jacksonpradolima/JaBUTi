@@ -1,0 +1,36 @@
+\contentsline {section}{Abstract}{ii}
+\contentsline {section}{\numberline {1}JaBUTi\xspace Functionality and Graphical Interface}{1}
+\contentsline {section}{\numberline {2}How to Create a Testing Project}{3}
+\contentsline {section}{\numberline {3}How to use JaBUTi\xspace as a Coverage Analysis Tool}{6}
+\contentsline {subsection}{\numberline {3.1}How the testing requirements are highlighted}{8}
+\contentsline {subsection}{\numberline {3.2}How to generate testing reports}{13}
+\contentsline {subsection}{\numberline {3.3}How to generate an HTML version of a JaBUTi\xspace report}{16}
+\contentsline {subsection}{\numberline {3.4}How to include a test case}{18}
+\contentsline {subsection}{\numberline {3.5}How to import test cases from JUnit framework}{22}
+\contentsline {subsection}{\numberline {3.6}How to mark a testing requirement as infeasible}{26}
+\contentsline {section}{\numberline {4}How to use JaBUTi\xspace as a Slicing Tool}{28}
+\contentsline {section}{\numberline {5}How to use the JaBUTi\xspace 's Static Metrics Tool}{30}
+\contentsline {subsection}{\numberline {5.1}LK's Metrics Applied to Classes}{30}
+\contentsline {subsubsection}{\numberline {5.1.1}NPIM -- Number of public instance methods in a class}{30}
+\contentsline {subsubsection}{\numberline {5.1.2}NIV -- Number of instance variables in a class}{30}
+\contentsline {subsubsection}{\numberline {5.1.3}NCM -- Number of class methods in a class}{30}
+\contentsline {subsubsection}{\numberline {5.1.4}NCV -- Number of class variables in a class}{30}
+\contentsline {subsubsection}{\numberline {5.1.5}ANPM -- Average number of parameters per method}{30}
+\contentsline {subsubsection}{\numberline {5.1.6}AMZ -- Average method size}{30}
+\contentsline {subsubsection}{\numberline {5.1.7}UMI -- Use of multiple inheritance}{30}
+\contentsline {subsubsection}{\numberline {5.1.8}NMOS -- Number of methods overridden by a subclass}{30}
+\contentsline {subsubsection}{\numberline {5.1.9}NMIS -- Number of methods inherited by a subclass}{31}
+\contentsline {subsubsection}{\numberline {5.1.10}NMAS -- Number of methods added by a subclass}{31}
+\contentsline {subsubsection}{\numberline {5.1.11}SI -- Specialization index}{31}
+\contentsline {subsection}{\numberline {5.2}CK's Metrics Applied to Classes}{31}
+\contentsline {subsubsection}{\numberline {5.2.1}NOC -- Number of Children}{31}
+\contentsline {subsubsection}{\numberline {5.2.2}DIT -- Depth of Inheritance Tree}{31}
+\contentsline {subsubsection}{\numberline {5.2.3}WMC -- Weighted Methods per Class}{31}
+\contentsline {subsubsection}{\numberline {5.2.4}LCOM -- Lack of Cohesion in Methods}{32}
+\contentsline {subsubsection}{\numberline {5.2.5}RFC -- Response for a Class}{32}
+\contentsline {subsubsection}{\numberline {5.2.6}CBO -- Coupling Between Object}{32}
+\contentsline {subsection}{\numberline {5.3}Another Metrics Applied to Methods}{32}
+\contentsline {subsubsection}{\numberline {5.3.1}CC -- Cyclomatic Complexity Metric}{32}
+\contentsline {subsection}{\numberline {5.4}The Static Metrics GUI}{33}
+\contentsline {section}{\numberline {6}License}{35}
+\contentsline {section}{References}{44}
