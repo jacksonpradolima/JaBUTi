@@ -49,8 +49,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
 
 import javax.swing.JOptionPane;
 
@@ -117,8 +115,8 @@ public class GraphViz
 		   else
 		   if ( s != null && s.startsWith("WINDOWS") )
 		   {
-			   DOT = windowsFindDot();
-			   // DOT = DOT_W;
+			   //DOT = windowsFindDot();
+			   DOT = DOT_W;
 			   System.out.println(DOT);
 		   }
 		   else
@@ -145,41 +143,32 @@ public class GraphViz
    }
 
    private String windowsFindDot() {
-	String s = getGraphVizInstallPath();
-	if (s == null)
-		return DOT_W;
-	else
-		return s += File.separator + "bin" + File.separator + "dot.exe";
-}
-   
-   private static final String REGQUERY_UTIL = "reg query ";
-   private static final String REGSTR_TOKEN = "REG_EXPAND_SZ";
-   private static final String COMPUTER_WINDOWS_GRAPHVIZ_FOLDER = REGQUERY_UTIL + "\"HKLM\\SOFTWARE\\AT&T Research Labs\\Graphviz\" /v InstallPath";
-
-
-   public static String getGraphVizInstallPath() {
-		try {
-			Process process = Runtime.getRuntime().exec(
-					COMPUTER_WINDOWS_GRAPHVIZ_FOLDER);
-			StreamReader reader = new StreamReader(process.getInputStream());
-			reader.start();
-			process.waitFor();
-			reader.join();
-			String result = reader.getResult();
-			int p = result.indexOf(REGSTR_TOKEN);
-			if (p == -1)
-				return null;
-			return result.substring(p + REGSTR_TOKEN.length()).trim();
-		} catch (Exception e) {
-			return null;
+	File f = new File(DOT_W);
+	if ( f.isFile() )
+		return f.getAbsolutePath();
+	f = new File("\\Program Files");
+	if ( ! f.isDirectory() )
+		return null;
+	File[] ds = f.listFiles();
+	for (File f2 : ds)
+	{
+		if ( ! f2.isDirectory() )
+			continue;
+		String n = f2.getName().toUpperCase();
+		if ( n.startsWith("GRAPHVIZ"))
+		{
+			File d = new File(f2, "bin\\dot.exe");
+			if (d.isFile() )
+				return d.getAbsolutePath();
 		}
-	}   
+	}
+	return null;
+}
 
 /**
- * Returns the graph's source description in dot language.
- * 
- * @return Source of the graph in dot language.
- */
+    * Returns the graph's source description in dot language.
+    * @return Source of the graph in dot language.
+    */
    public String getDotSource() {
       return graph.toString();
    }
@@ -366,27 +355,4 @@ public class GraphViz
    public String end_graph() {
       return "}";
    }
-}
-
-class StreamReader extends Thread {
-	private InputStream is;
-	private StringWriter sw;
-
-	StreamReader(InputStream is) {
-	this.is = is;
-	sw = new StringWriter();
-	}
-
-	public void run() {
-	try {
-	int c;
-	while ((c = is.read()) != -1)
-	sw.write(c);
-	}
-	catch (IOException e) { ; }
-	}
-
-	String getResult() {
-	return sw.toString();
-	}
 }

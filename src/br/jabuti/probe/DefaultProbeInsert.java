@@ -20,15 +20,36 @@
 package br.jabuti.probe;
 
 
-import br.jabuti.graph.*;
-import br.jabuti.util.*;
-import br.jabuti.verifier.*;
-import org.apache.bcel.classfile.*;
-import org.apache.bcel.generic.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Map;
 
-import br.jabuti.instrumenter.*;
-import br.jabuti.lookup.*;
+import org.apache.bcel.classfile.Attribute;
+import org.apache.bcel.classfile.JavaClass;
+import org.apache.bcel.classfile.Method;
+import org.apache.bcel.classfile.Unknown;
+import org.apache.bcel.generic.BranchInstruction;
+import org.apache.bcel.generic.ClassGen;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.Instruction;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.JSR;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.ObjectType;
+import org.apache.bcel.generic.ReturnInstruction;
+
+import br.jabuti.graph.CFG;
+import br.jabuti.graph.CFGNode;
+import br.jabuti.graph.CFGSuperNode;
+import br.jabuti.instrumenter.ASMInstrumenter;
+import br.jabuti.instrumenter.ParseException;
+import br.jabuti.lookup.Program;
+import br.jabuti.lookup.RClassCode;
+import br.jabuti.verifier.InvalidInstructionException;
+import br.jabuti.verifier.InvalidStackArgument;
 
  
 /** This class is designed to insert probes on each 
@@ -272,19 +293,6 @@ public class DefaultProbeInsert {
                 if ( stackSize < 6 ) {
                 	mg.setMaxStack(stackSize + 6);
                 }
-                // Remove LVTT do código. Tenta evitar geracao errada do BCEL 5.2
-                ConstantPoolGen p = mg.getConstantPool();
-                for (Attribute atr : mg.getCodeAttributes()) {
-                    int k = atr.getNameIndex();
-                    Constant c = p.getConstant(k);
-                    String s = ((ConstantUtf8) c).getBytes();
-
-                	if ( s.equals ("LocalVariableTypeTable") ) 
-                	{
-                      mg.removeCodeAttribute(atr);
-                    }
-                }
-
                 methods[i] = mg.getMethod();
             } catch (Exception e) { 
             	System.out.println(className);
@@ -399,7 +407,8 @@ public class DefaultProbeInsert {
 				nx = curr.getNext();
 			} while ( curr != last );
 			
-			// and finally, includes the exception handler for the entire original source code
+			// e finalmente, coloca o tratador de exceï¿½ï¿½es para todo
+			// o cï¿½digo orignal
 	        iList = mg.getInstructionList();
 	        mg.addExceptionHandler(preambulo, last, catcher, (ObjectType) null);
         } 
