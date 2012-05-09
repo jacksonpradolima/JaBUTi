@@ -83,6 +83,23 @@
   </junit>
 </target>
 
+<!-- JaBUTi the software -->
+
+<target name="jabuti" depends="jar">
+  <junit>
+  <classpath>
+       <path refid="classpath"/>
+       <path location="${build.dir}/instrum/${jar.file}"/>
+       <path location="."/>
+  </classpath>
+  <formatter type="plain" usefile="false"/>
+	<test name="vending.TestDriverJUnit" />
+	<test name="vending.DispenserTestCase" />
+  </junit>
+</target>
+
+
+
 <!-- Clean up everything and rebuild the software -->
 
 <target name="clean-build" depends="clean,jar"/>
