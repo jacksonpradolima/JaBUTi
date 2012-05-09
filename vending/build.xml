@@ -28,6 +28,7 @@
 <property name="ant.build.javac.encoding" value="ISO-8859-1"/>
 	
 <property name="src.dir"	value="src"/>
+<property name="test.dir"	value="test"/>
 <property name="build.dir"	value="build"/>
 <property name="lib.dir"	value="lib"/>
 <property name="classes.dir"    value="${build.dir}/classes"/>
@@ -51,7 +52,7 @@
   <javac encoding="${ant.build.javac.encoding}"
          source="${ant.build.javac.source}"
          target="${ant.build.javac.target}" 
-  	     srcdir="${src.dir}" 
+  	     srcdir="${src.dir}:${test.dir}" 
   	     destdir="${classes.dir}" 
   	     classpathref="classpath"/>
 </target>
@@ -63,21 +64,23 @@
   <jar destfile="${jar.dir}/${jar.file}" basedir="${classes.dir}">
 	<fileset dir="${src.dir}" includes="**/*.png,**/*.gif" />
 	<fileset dir="." includes="**/LICENSE.TXT,**/LGPL.TXT" />
-    <manifest>
-      <attribute name="Main-Class" value="${main-class}"/>
-    </manifest>
+	<fileset dir="." includes="test/input*" />
   </jar>
 </target>
 
 <!-- Run the software -->
 
-<target name="run" depends="jar">
-  <java fork="true" classname="${main-class}">
+<target name="test" depends="jar">
+  <junit>
   <classpath>
        <path refid="classpath"/>
        <path location="${jar.dir}/${jar.file}"/>
+       <path location="."/>
   </classpath>
-  </java>
+  <formatter type="plain" usefile="false"/>
+	<test name="vending.TestDriverJUnit" />
+	<test name="vending.DispenserTestCase" />
+  </junit>
 </target>
 
 <!-- Clean up everything and rebuild the software -->

@@ -22,6 +22,8 @@ package vending;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.StringTokenizer;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.junit.Test;
 
@@ -30,8 +32,11 @@ public class TestDriverJUnit {
 	@Test
 	public void testInput1() throws Exception {
 
+//		System.out.println(this.getClass().getResource("..\\test\\input1.txt").getPath());
+
 		//Rafael
-		String input = "test\\input1.txt";
+		InputStream input = this.getClass().getResourceAsStream("/test/input1.txt");
+//		String input = "test\\input1.txt";
 
 		BufferedReader drvInput;
 		String tcLine = new String();
@@ -41,10 +46,11 @@ public class TestDriverJUnit {
 		VendingMachine machine = new VendingMachine();
 
 		//if (args.length < 1)
-			//  drvInput = new BufferedReader(new InputStreamReader(System.in));
+//		drvInput = new BufferedReader(new InputStreamReader(System.in));
+		drvInput = new BufferedReader(new InputStreamReader(input));
 		//else
 		//  drvInput = new BufferedReader(new FileReader(args[0]));
-		drvInput = new BufferedReader(new FileReader(input));
+//		drvInput = new BufferedReader(new FileReader(input));
 
 		System.out.println("VendingMachine ON");
 		// Machine is ready. Reading input...
