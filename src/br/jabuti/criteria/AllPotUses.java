@@ -193,8 +193,10 @@ public class AllPotUses extends AbstractCriterion {
 
                 if (path[j] instanceof Integer) {
                     from = ((Integer) path[j]).toString();
-                } else {
+                } else if (path[j] != null) {
                     from = (String) path[j];
+                } else {
+                    from = "null" + j;
                 }
                 if (!from.equals(def)) {
                     continue;

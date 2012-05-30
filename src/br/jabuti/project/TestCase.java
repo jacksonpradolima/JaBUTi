@@ -161,9 +161,20 @@ public class TestCase {
 
 						// Adding new paths info...
 						for (int k = 0; k < pathList.length; k++) {
+              
+              System.err.println("********************** pathList");
+              for (Object p : pathList[k]) {
+                System.err.println(p);
+              }
+
+
 							Object[] thePath = AbstractCriterion.changePath(
-							cm.getCFG(),
-							pathList[k]);
+							  cm.getCFG(), pathList[k]);
+
+              System.err.println("********************** thePath");
+              for (Object p : thePath) {
+                System.err.println(p);
+              }
 														
 							for (int i = 0; i < Criterion.NUM_CRITERIA; i++) {								
 								criterion = cm.getCriterion(i);

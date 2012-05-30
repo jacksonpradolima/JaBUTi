@@ -102,7 +102,10 @@ public class AllNodes extends AbstractCriterion {
         
         for (int i = 0; i < path.length; i++) {
             Node lab = null;
-            lab = new Node(path[i].toString()); 
+            if (path[i] != null)
+              lab = new Node(path[i].toString()); 
+            else
+              lab = new Node("null" + i);
 
             if (lab.from != null && required.containsKey(lab)) {
                 co2.add(lab);

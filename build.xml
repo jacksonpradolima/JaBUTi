@@ -55,7 +55,9 @@
          target="${ant.build.javac.target}" 
   	     srcdir="${src.dir}" 
   	     destdir="${classes.dir}" 
-  	     classpathref="classpath"/>
+         classpathref="classpath"
+         debug="on" 
+         debuglevel="lines,vars,source"/>
 </target>
 
 <!-- Create the jar file -->
