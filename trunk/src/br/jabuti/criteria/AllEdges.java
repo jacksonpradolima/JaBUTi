@@ -139,11 +139,18 @@ public class AllEdges extends AbstractCriterion {
 			
             String lab1 = null, lab2 = null;
 
-            lab1 = path[i].toString(); 
+            if (path[i] != null)
+              lab1 = path[i].toString(); 
+            else
+              lab1 = "null" + i;
+
 			
             int k = i + 1;
 
-            lab2 = path[k].toString(); 
+            if (path[k] != null)
+              lab2 = path[k].toString(); 
+            else
+              lab2 = "null" + k;
 			
             Edge ed = null;
 
