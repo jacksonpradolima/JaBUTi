@@ -65,6 +65,7 @@
 <target name="jar" depends="compile">
   <mkdir dir="${jar.dir}"/>
   <jar destfile="${jar.dir}/${jar.file}" basedir="${classes.dir}">
+	<zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
 	<fileset dir="${src.dir}" includes="**/*.png,**/*.gif" />
 	<fileset dir="." includes="**/LICENSE.TXT,**/LGPL.TXT" />
     <manifest>
