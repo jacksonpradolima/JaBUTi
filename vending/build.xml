@@ -70,16 +70,16 @@
 
 <!-- Run the software -->
 
-<target name="test" depends="jar">
+<target name="test" depends="compile">
   <junit>
-  <classpath>
-       <path refid="classpath"/>
-       <path location="${jar.dir}/${jar.file}"/>
-       <path location="."/>
-  </classpath>
-  <formatter type="plain" usefile="false"/>
-	<test name="vending.TestDriverJUnit" />
-	<test name="vending.DispenserTestCase" />
+    <classpath>
+      <path refid="classpath"/>
+      <path location="${classes.dir}"/>
+      <path location="."/>
+    </classpath>
+    <formatter type="plain" usefile="false"/>
+    <test name="vending.TestDriverJUnit" />
+    <test name="vending.DispenserTestCase" />
   </junit>
 </target>
 
