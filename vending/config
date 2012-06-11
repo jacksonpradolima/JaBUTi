@@ -1,7 +1,0 @@
-ORIG_DIR=/home/rmartins/dev/jabuti/vending/build/classes/vending
-JABUTI=/home/rmartins/dev/jabuti/vending/lib/jabuti-1.0.3.jar
-ORIG_JAR=/home/rmartins/dev/jabuti/vending/build/jar/vending.jar
-INSTRUM_JAR=/home/rmartins/dev/jabuti/vending/build/instrum/vending.jar
-TEST_SCRIPT=/home/rmartins/dev/jabuti/vending/
-TEST_EXEC_CMD="ant jabuti"
-TEST_SCRIPT_OUT=/home/rmartins/dev/jabuti/vending/build/test/
