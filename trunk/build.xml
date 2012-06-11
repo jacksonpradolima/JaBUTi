@@ -32,7 +32,7 @@
 <property name="lib.dir"	value="lib"/>
 <property name="classes.dir"    value="${build.dir}/classes"/>
 <property name="jar.dir"	value="${build.dir}/jar"/>
-<property name="jar.file"	value="Jabuti-bin.jar"/>
+<property name="jar.file"	value="jabuti.jar"/>
 <property name="main-class"	value="br.jabuti.gui.JabutiGUI"/>
 <property name="doc.dir"	value="doc"/>
 	        
@@ -80,7 +80,7 @@
   <java fork="true" classname="${main-class}">
   <classpath>
        <path refid="classpath"/>
-       <path location="${jar.dir}/Jabuti-bin.jar"/>
+       <path location="${jar.dir}/jabuti.jar"/>
   </classpath>
   </java>
 </target>
